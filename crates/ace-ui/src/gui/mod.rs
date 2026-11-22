@@ -9,6 +9,7 @@ pub mod modals;
 pub mod root;
 pub mod runtime;
 mod sa_theme;
+pub mod shortcuts;
 pub mod sql_complete;
 pub mod sql_highlight;
 pub mod state;

@@ -9,6 +9,7 @@ use crate::gui::runtime::{
     query_result_to_cells, relation_rows, run_sql_multi, structure_column_rows, test_connection,
     tokio_rt, trigger_rows,
 };
+use crate::gui::shortcuts::{mod_binding, mod_shortcut};
 use crate::gui::sql_complete::{ColumnHint, SchemaCatalog, SqlCompletionProvider};
 use crate::gui::sql_highlight::sql_highlighter_factory;
 use crate::gui::state::{
@@ -266,6 +267,7 @@ impl AceApp {
         };
 
         let focus_handle = cx.focus_handle();
+        window.focus(&focus_handle, cx);
 
         Self {
             tabs: vec![first_tab],
@@ -1315,7 +1317,12 @@ impl AceApp {
         let query_editor = cx.new(|cx| {
             let mut ed = EditorState::new(window, cx)
                 .language("sql")
-                .placeholder("Write SQL queries here… (Cmd+R to run current, Cmd+Shift+R to run all)");
+                .placeholder(format!(
+                    "Write SQL queries here… ({} / {} to run current, {} to run all)",
+                    mod_shortcut("Enter"),
+                    mod_shortcut("R"),
+                    mod_shortcut("Shift+R"),
+                ));
             ed.set_highlighter_factory(sql_highlighter_factory(), cx);
             ed.lsp_mut().completion_provider = Some(Rc::new(SqlCompletionProvider::new(provider_catalog)));
             ed
@@ -4151,24 +4158,38 @@ pub fn run_gui() {
             cx.activate(true);
         });
 
-        cx.bind_keys([
-            KeyBinding::new("cmd-q", Quit, None),
-            KeyBinding::new("cmd-n", NewWindow, None),
-            KeyBinding::new("cmd-1", TabStructure, Some("AceApp")),
-            KeyBinding::new("cmd-2", TabContent, Some("AceApp")),
-            KeyBinding::new("cmd-3", TabRelations, Some("AceApp")),
-            KeyBinding::new("cmd-4", TabTriggers, Some("AceApp")),
-            KeyBinding::new("cmd-5", TabTableInfo, Some("AceApp")),
-            KeyBinding::new("cmd-6", TabQuery, Some("AceApp")),
-            KeyBinding::new("cmd-r", RunQueryCurrent, Some("AceApp")),
-            KeyBinding::new("cmd-shift-r", RunQueryAll, Some("AceApp")),
-            KeyBinding::new("cmd-enter", RunQueryCurrent, Some("AceApp")),
+        let mut bindings = vec![
+            mod_binding("cmd-q", "ctrl-q", Quit, None),
+            mod_binding("cmd-n", "ctrl-n", NewWindow, None),
+            mod_binding("cmd-1", "ctrl-1", TabStructure, Some("AceApp")),
+            mod_binding("cmd-2", "ctrl-2", TabContent, Some("AceApp")),
+            mod_binding("cmd-3", "ctrl-3", TabRelations, Some("AceApp")),
+            mod_binding("cmd-4", "ctrl-4", TabTriggers, Some("AceApp")),
+            mod_binding("cmd-5", "ctrl-5", TabTableInfo, Some("AceApp")),
+            mod_binding("cmd-6", "ctrl-6", TabQuery, Some("AceApp")),
+            mod_binding("cmd-r", "ctrl-r", RunQueryCurrent, Some("AceApp")),
+            mod_binding("cmd-shift-r", "ctrl-shift-r", RunQueryAll, Some("AceApp")),
+            mod_binding("cmd-enter", "ctrl-enter", RunQueryCurrent, Some("AceApp")),
+            mod_binding(
+                "cmd-shift-enter",
+                "ctrl-shift-enter",
+                RunQueryAll,
+                Some("AceApp"),
+            ),
             KeyBinding::new("ctrl-space", ShowCompletions, Some("Input")),
-            KeyBinding::new("cmd-t", NewWindowTab, Some("AceApp")),
-            KeyBinding::new("cmd-w", CloseWindowTab, Some("AceApp")),
-            KeyBinding::new("cmd-shift-c", ToggleConsole, Some("AceApp")),
+            mod_binding("cmd-t", "ctrl-t", NewWindowTab, Some("AceApp")),
+            mod_binding("cmd-w", "ctrl-w", CloseWindowTab, Some("AceApp")),
+            mod_binding(
+                "cmd-shift-c",
+                "ctrl-shift-c",
+                ToggleConsole,
+                Some("AceApp"),
+            ),
             KeyBinding::new("escape", DismissModal, Some("AceApp")),
-        ]);
+        ];
+        #[cfg(not(target_os = "macos"))]
+        bindings.push(KeyBinding::new("f5", RunQueryCurrent, Some("AceApp")));
+        cx.bind_keys(bindings);
 
         cx.set_menus(vec![
             Menu {

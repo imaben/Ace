@@ -4,6 +4,7 @@
 
 use crate::gui::loading::{loading_inline, loading_pane, loading_pane_empty};
 use crate::gui::root::AceApp;
+use crate::gui::shortcuts::mod_shortcut;
 use crate::gui::state::{QueryDrawerTab, WorkspaceSession};
 use crate::gui::theme::{favorite_tint, Palette};
 use crate::views::MainViewTab;
@@ -143,7 +144,7 @@ impl AceApp {
                                     .ghost()
                                     .xsmall()
                                     .icon(Icon::new(Lucide::Plus).size(px(12.)))
-                                    .tooltip("New Connection Tab (Cmd+T)")
+                                    .tooltip(format!("New Connection Tab ({})", mod_shortcut("T")))
                                     .on_click(cx.listener(|this, _, window, cx| {
                                         this.new_tab(window, cx);
                                     })),
@@ -428,7 +429,10 @@ impl AceApp {
                             } else {
                                 String::new()
                             })
-                            .tooltip("Toggle SQL Console (Cmd+Shift+C)")
+                            .tooltip(format!(
+                                "Toggle SQL Console ({})",
+                                mod_shortcut("Shift+C")
+                            ))
                             .on_click(cx.listener(|this, _, _, cx| {
                                 this.toggle_console(cx);
                             })),
@@ -1680,7 +1684,19 @@ impl AceApp {
                             .loading(query_loading)
                             .icon(Icon::new(Lucide::Play).size(px(11.)))
                             .label("Run Current")
-                            .tooltip("Run selected SQL or statement at cursor (Cmd+R / Cmd+Enter)")
+                            .tooltip(if cfg!(target_os = "macos") {
+                                format!(
+                                    "Run selected SQL or statement at cursor ({} / {})",
+                                    mod_shortcut("Enter"),
+                                    mod_shortcut("R"),
+                                )
+                            } else {
+                                format!(
+                                    "Run selected SQL or statement at cursor ({} / {} / F5)",
+                                    mod_shortcut("Enter"),
+                                    mod_shortcut("R"),
+                                )
+                            })
                             .on_click(cx.listener(|this, _, window, cx| {
                                 this.run_custom_query(true, window, cx);
                             })),
@@ -1692,7 +1708,11 @@ impl AceApp {
                             .disabled(query_loading)
                             .icon(Icon::new(Lucide::CirclePlay).size(px(12.)))
                             .label("Run All")
-                            .tooltip("Run all queries in editor (Cmd+Shift+R)")
+                            .tooltip(format!(
+                                "Run all queries in editor ({} / {})",
+                                mod_shortcut("Shift+R"),
+                                mod_shortcut("Shift+Enter"),
+                            ))
                             .on_click(cx.listener(|this, _, window, cx| {
                                 this.run_custom_query(false, window, cx);
                             })),
