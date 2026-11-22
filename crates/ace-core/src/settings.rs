@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct AppSettings {
     pub general: GeneralSettings,
     pub table: TableSettings,
@@ -23,7 +23,7 @@ impl Default for AppSettings {
     }
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct GeneralSettings {
     pub language: String,
     pub check_for_updates: bool,
@@ -40,7 +40,7 @@ impl Default for GeneralSettings {
     }
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct TableSettings {
     pub rows_per_page: usize,
     pub null_display: String,
@@ -61,7 +61,7 @@ impl Default for TableSettings {
     }
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct EditorSettings {
     pub font_family: String,
     pub font_size: f32,
@@ -84,7 +84,7 @@ impl Default for EditorSettings {
     }
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct NetworkSettings {
     pub connect_timeout_secs: u64,
     pub keep_alive_secs: u64,
@@ -103,7 +103,7 @@ impl Default for NetworkSettings {
     }
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct McpSettings {
     pub enabled: bool,
     pub bind_host: String,
@@ -133,7 +133,7 @@ pub enum ThemeMode {
     Dark,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct AppearanceSettings {
     pub theme_mode: ThemeMode,
 }
@@ -153,5 +153,39 @@ impl AppSettings {
 
     pub fn from_toml(s: &str) -> Result<Self, toml::de::Error> {
         toml::from_str(s)
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn default_settings_roundtrip_toml() {
+        let original = AppSettings::default();
+        let raw = original.to_toml().expect("serialize default settings");
+        let parsed = AppSettings::from_toml(&raw).expect("deserialize default settings");
+        assert_eq!(parsed, original);
+        assert!(raw.contains("check_for_updates"));
+        assert!(raw.contains("rows_per_page"));
+    }
+
+    #[test]
+    fn settings_toml_preserves_edits() {
+        let mut settings = AppSettings::default();
+        settings.general.language = "zh-Hans".into();
+        settings.general.check_for_updates = false;
+        settings.table.rows_per_page = 200;
+        settings.appearance.theme_mode = ThemeMode::Dark;
+        settings.mcp.enabled = true;
+        settings.mcp.bind_port = 4000;
+        settings.mcp.auth_token = None;
+        let parsed = AppSettings::from_toml(&settings.to_toml().unwrap()).unwrap();
+        assert_eq!(parsed, settings);
+    }
+
+    #[test]
+    fn empty_toml_is_rejected() {
+        assert!(AppSettings::from_toml("").is_err());
     }
 }

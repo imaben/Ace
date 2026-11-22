@@ -1,6 +1,6 @@
 # Sequel Ace → Ace 功能对照清单
 
-> 对照仓库：`/Users/maben/workspace/db/Sequel-Ace`  
+> 对照仓库：https://github.com/Sequel-Ace/Sequel-Ace
 > 状态：`[ ]` 未做 · `[~]` 进行中 · `[x]` 已对齐  
 > 规则：**未勾选项不得宣称完成；每项必须对照源码/XIB 验收。**
 

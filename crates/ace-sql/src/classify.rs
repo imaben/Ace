@@ -46,9 +46,8 @@ pub fn is_single_table_select(sql: &str) -> Option<String> {
         return None;
     }
     static RE: OnceLock<Regex> = OnceLock::new();
-    let re = RE.get_or_init(|| {
-        Regex::new(r#"(?is)\bFROM\s+[`"\[]?([a-zA-Z0-9_$.]+)[`"\]]?"#).unwrap()
-    });
+    let re =
+        RE.get_or_init(|| Regex::new(r#"(?is)\bFROM\s+[`"\[]?([a-zA-Z0-9_$.]+)[`"\]]?"#).unwrap());
     re.captures(sql)
         .and_then(|c| c.get(1))
         .map(|m| m.as_str().to_string())
@@ -78,5 +77,22 @@ mod tests {
             Some("users")
         );
         assert!(is_single_table_select("SELECT * FROM a JOIN b ON 1=1").is_none());
+        assert!(is_single_table_select("SELECT * FROM a UNION SELECT * FROM b").is_none());
+        assert!(is_single_table_select("DELETE FROM users").is_none());
+    }
+
+    #[test]
+    fn classify_skips_leading_comments_and_covers_kinds() {
+        assert_eq!(
+            classify_sql("/* note */\nDELETE FROM t"),
+            StatementKind::Delete
+        );
+        assert_eq!(classify_sql("EXPLAIN SELECT 1"), StatementKind::Explain);
+        assert_eq!(classify_sql("USE app"), StatementKind::Use);
+        assert_eq!(classify_sql("BEGIN"), StatementKind::Transaction);
+        assert_eq!(classify_sql("SHOW TABLES"), StatementKind::Show);
+        assert!(is_read_only("SELECT 1"));
+        assert!(!is_read_only("UPDATE t SET a = 1"));
+        assert_eq!(classify_sql(""), StatementKind::Other);
     }
 }

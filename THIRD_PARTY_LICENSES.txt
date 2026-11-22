@@ -1,0 +1,909 @@
+# Third-party license inventory for Ace
+# Generated: 2026-11-22 07:45 UTC
+# Source: cargo metadata (crate license / license-file fields)
+# This file lists metadata only; see each crate for full license text.
+#
+# kind	name	version	license	repository
+workspace	ace-app	0.1.0	MIT	https://github.com/imaben/Ace
+workspace	ace-bundle	0.1.0	MIT	https://github.com/imaben/Ace
+workspace	ace-core	0.1.0	MIT	https://github.com/imaben/Ace
+workspace	ace-driver	0.1.0	MIT	https://github.com/imaben/Ace
+workspace	ace-io	0.1.0	MIT	https://github.com/imaben/Ace
+workspace	ace-mcp	0.1.0	MIT	https://github.com/imaben/Ace
+workspace	ace-mysql	0.1.0	MIT	https://github.com/imaben/Ace
+workspace	ace-net	0.1.0	MIT	https://github.com/imaben/Ace
+workspace	ace-postgres	0.1.0	MIT	https://github.com/imaben/Ace
+workspace	ace-sql	0.1.0	MIT	https://github.com/imaben/Ace
+workspace	ace-sqlite	0.1.0	MIT	https://github.com/imaben/Ace
+workspace	ace-store	0.1.0	MIT	https://github.com/imaben/Ace
+workspace	ace-ui	0.1.0	MIT	https://github.com/imaben/Ace
+dependency	accesskit	0.24.1	MIT OR Apache-2.0	https://github.com/AccessKit/accesskit
+dependency	accesskit_atspi_common	0.19.1	MIT OR Apache-2.0	https://github.com/AccessKit/accesskit
+dependency	accesskit_consumer	0.38.0	MIT OR Apache-2.0	https://github.com/AccessKit/accesskit
+dependency	accesskit_macos	0.26.3	MIT OR Apache-2.0	https://github.com/AccessKit/accesskit
+dependency	accesskit_unix	0.22.1	MIT OR Apache-2.0	https://github.com/AccessKit/accesskit
+dependency	accesskit_windows	0.34.0	MIT OR Apache-2.0	https://github.com/AccessKit/accesskit
+dependency	addr2line	0.27.1	Apache-2.0 OR MIT	https://github.com/gimli-rs/addr2line
+dependency	adler2	2.0.1	0BSD OR MIT OR Apache-2.0	https://github.com/oyvindln/adler2
+dependency	aes	0.8.4	MIT OR Apache-2.0	https://github.com/RustCrypto/block-ciphers
+dependency	ahash	0.8.12	MIT OR Apache-2.0	https://github.com/tkaitchuck/ahash
+dependency	aho-corasick	1.1.5	Unlicense OR MIT	https://github.com/BurntSushi/aho-corasick
+dependency	aligned	0.4.3	MIT OR Apache-2.0	https://github.com/rust-embedded-community/aligned
+dependency	aligned-vec	0.6.4	MIT	https://github.com/sarah-ek/aligned-vec/
+dependency	allocator-api2	0.2.21	MIT OR Apache-2.0	https://github.com/zakarumych/allocator-api2
+dependency	android_system_properties	0.1.6	MIT OR Apache-2.0	https://github.com/nical/android_system_properties
+dependency	annotate-snippets	0.12.18	MIT OR Apache-2.0	https://github.com/rust-lang/annotate-snippets-rs
+dependency	anstream	1.0.0	MIT OR Apache-2.0	https://github.com/rust-cli/anstyle.git
+dependency	anstyle	1.0.14	MIT OR Apache-2.0	https://github.com/rust-cli/anstyle.git
+dependency	anstyle-parse	1.0.0	MIT OR Apache-2.0	https://github.com/rust-cli/anstyle.git
+dependency	anstyle-query	1.1.5	MIT OR Apache-2.0	https://github.com/rust-cli/anstyle.git
+dependency	anstyle-wincon	3.0.11	MIT OR Apache-2.0	https://github.com/rust-cli/anstyle.git
+dependency	anyhow	1.0.104	MIT OR Apache-2.0	https://github.com/dtolnay/anyhow
+dependency	arbitrary	1.5.0	MIT OR Apache-2.0	https://github.com/rust-fuzz/arbitrary/
+dependency	arc-swap	1.9.5	MIT OR Apache-2.0	https://github.com/vorner/arc-swap
+dependency	arg_enum_proc_macro	0.3.4	MIT	https://github.com/lu-zero/arg_enum_proc_macro
+dependency	arraydeque	0.5.1	MIT/Apache-2.0	https://github.com/andylokandy/arraydeque
+dependency	arrayref	0.3.9	BSD-2-Clause	https://github.com/droundy/arrayref
+dependency	arrayvec	0.7.8	MIT OR Apache-2.0	https://github.com/bluss/arrayvec
+dependency	as-raw-xcb-connection	1.0.1	MIT OR Apache-2.0	https://github.com/psychon/as-raw-xcb-connection
+dependency	as-slice	0.2.1	MIT OR Apache-2.0	https://github.com/japaric/as-slice
+dependency	ash	0.38.0+1.3.281	MIT OR Apache-2.0	https://github.com/ash-rs/ash
+dependency	ashpd	0.13.13	MIT	https://github.com/bilelmoussaoui/ashpd
+dependency	async-broadcast	0.7.2	MIT OR Apache-2.0	https://github.com/smol-rs/async-broadcast
+dependency	async-channel	2.5.0	Apache-2.0 OR MIT	https://github.com/smol-rs/async-channel
+dependency	async-executor	1.14.1	Apache-2.0 OR MIT	https://github.com/smol-rs/async-executor
+dependency	async-fs	2.2.0	Apache-2.0 OR MIT	https://github.com/smol-rs/async-fs
+dependency	async-io	2.6.0	Apache-2.0 OR MIT	https://github.com/smol-rs/async-io
+dependency	async-lock	3.5.0	Apache-2.0 OR MIT	https://github.com/smol-rs/async-lock
+dependency	async-net	2.0.0	Apache-2.0 OR MIT	https://github.com/smol-rs/async-net
+dependency	async-process	2.5.0	Apache-2.0 OR MIT	https://github.com/smol-rs/async-process
+dependency	async-recursion	1.2.0	MIT OR Apache-2.0	https://github.com/dcchut/async-recursion
+dependency	async-signal	0.2.14	Apache-2.0 OR MIT	https://github.com/smol-rs/async-signal
+dependency	async-task	4.7.1	Apache-2.0 OR MIT	https://github.com/smol-rs/async-task
+dependency	async-trait	0.1.92	MIT OR Apache-2.0	https://github.com/dtolnay/async-trait
+dependency	atomic-waker	1.1.2	Apache-2.0 OR MIT	https://github.com/smol-rs/atomic-waker
+dependency	atspi	0.29.0	Apache-2.0 OR MIT	https://github.com/odilia-app/atspi
+dependency	atspi-common	0.13.0	Apache-2.0 OR MIT	https://github.com/odilia-app/atspi
+dependency	atspi-proxies	0.13.0	Apache-2.0 OR MIT	https://github.com/odilia-app/atspi
+dependency	autocfg	1.5.1	Apache-2.0 OR MIT	https://github.com/cuviper/autocfg
+dependency	av-scenechange	0.14.1	MIT	https://github.com/rust-av/av-scenechange
+dependency	av1-grain	0.2.5	BSD-2-Clause	https://github.com/rust-av/av1-grain
+dependency	avif-serialize	0.8.9	BSD-3-Clause	https://github.com/kornelski/avif-serialize
+dependency	aws-lc-rs	1.19.0	ISC AND (Apache-2.0 OR ISC)	https://github.com/aws/aws-lc-rs
+dependency	aws-lc-sys	0.47.0	ISC AND (Apache-2.0 OR ISC) AND Apache-2.0 AND MIT AND BSD-3-Clause AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR ISC OR MIT-0)	https://github.com/aws/aws-lc-rs
+dependency	axum	0.8.9	MIT	https://github.com/tokio-rs/axum
+dependency	axum-core	0.5.6	MIT	https://github.com/tokio-rs/axum
+dependency	backtrace	0.3.77	MIT OR Apache-2.0	https://github.com/rust-lang/backtrace-rs
+dependency	base62	2.2.6	MIT	https://github.com/fbernier/base62
+dependency	base64	0.21.7	MIT OR Apache-2.0	https://github.com/marshallpierce/rust-base64
+dependency	base64	0.22.1	MIT OR Apache-2.0	https://github.com/marshallpierce/rust-base64
+dependency	base64	0.23.1	MIT OR Apache-2.0	https://github.com/marshallpierce/rust-base64
+dependency	bindgen	0.73.2	BSD-3-Clause	https://github.com/rust-lang/rust-bindgen
+dependency	bit-set	0.10.0	Apache-2.0 OR MIT	https://github.com/contain-rs/bit-set
+dependency	bit-vec	0.9.1	Apache-2.0 OR MIT	https://github.com/contain-rs/bit-vec
+dependency	bit_field	0.10.4	MIT OR Apache-2.0	https://github.com/phil-opp/rust-bit-field
+dependency	bitflags	1.3.2	MIT/Apache-2.0	https://github.com/bitflags/bitflags
+dependency	bitflags	2.13.2	MIT OR Apache-2.0	https://github.com/bitflags/bitflags
+dependency	bitstream-io	4.10.0	MIT/Apache-2.0	https://github.com/tuffy/bitstream-io
+dependency	block	0.1.6	MIT	http://github.com/SSheldon/rust-block
+dependency	block-buffer	0.10.4	MIT OR Apache-2.0	https://github.com/RustCrypto/utils
+dependency	block-buffer	0.12.1	MIT OR Apache-2.0	https://github.com/RustCrypto/utils
+dependency	block-padding	0.3.3	MIT OR Apache-2.0	https://github.com/RustCrypto/utils
+dependency	block2	0.5.1	MIT	https://github.com/madsmtm/objc2
+dependency	block2	0.6.2	MIT	https://github.com/madsmtm/objc2
+dependency	blocking	1.7.0	Apache-2.0 OR MIT	https://github.com/smol-rs/blocking
+dependency	bstr	1.14.0	MIT OR Apache-2.0	https://github.com/BurntSushi/bstr
+dependency	btoi	0.4.3	MIT OR Apache-2.0	https://github.com/niklasf/rust-btoi
+dependency	built	0.8.1	MIT	https://github.com/lukaslueg/built
+dependency	bumpalo	3.20.4	MIT OR Apache-2.0	https://github.com/fitzgen/bumpalo
+dependency	bytemuck	1.25.2	Zlib OR Apache-2.0 OR MIT	https://github.com/Lokathor/bytemuck
+dependency	bytemuck_derive	1.12.1	Zlib OR Apache-2.0 OR MIT	https://github.com/Lokathor/bytemuck
+dependency	byteorder	1.5.0	Unlicense OR MIT	https://github.com/BurntSushi/byteorder
+dependency	byteorder-lite	0.1.0	Unlicense OR MIT	https://github.com/image-rs/byteorder-lite
+dependency	bytes	1.12.2	MIT	https://github.com/tokio-rs/bytes
+dependency	calloop	0.14.5	MIT	https://github.com/Smithay/calloop
+dependency	calloop-wayland-source	0.4.1	MIT	https://github.com/smithay/calloop-wayland-source
+dependency	cbc	0.1.2	MIT OR Apache-2.0	https://github.com/RustCrypto/block-modes
+dependency	cbindgen	0.28.0	MPL-2.0	https://github.com/mozilla/cbindgen
+dependency	cc	1.11.2	MIT OR Apache-2.0	https://github.com/rust-lang/cc-rs
+dependency	cexpr	0.6.0	Apache-2.0/MIT	https://github.com/jethrogb/rust-cexpr
+dependency	cfg-if	1.0.5	MIT OR Apache-2.0	https://github.com/rust-lang/cfg-if
+dependency	cfg_aliases	0.2.2	MIT	https://github.com/katharostech/cfg_aliases
+dependency	chacha20	0.10.2	MIT OR Apache-2.0	https://github.com/RustCrypto/stream-ciphers
+dependency	chrono	0.4.45	MIT OR Apache-2.0	https://github.com/chronotope/chrono
+dependency	cipher	0.4.4	MIT OR Apache-2.0	https://github.com/RustCrypto/traits
+dependency	clang-sys	1.9.1	Apache-2.0	https://github.com/KyleMayes/clang-sys
+dependency	clap	4.6.8	MIT OR Apache-2.0	https://github.com/clap-rs/clap
+dependency	clap_builder	4.6.7	MIT OR Apache-2.0	https://github.com/clap-rs/clap
+dependency	clap_derive	4.6.8	MIT OR Apache-2.0	https://github.com/clap-rs/clap
+dependency	clap_lex	1.1.2	MIT OR Apache-2.0	https://github.com/clap-rs/clap
+dependency	cmake	0.1.58	MIT OR Apache-2.0	https://github.com/rust-lang/cmake-rs
+dependency	cmov	0.5.4	Apache-2.0 OR MIT	https://github.com/RustCrypto/utils
+dependency	cocoa	0.25.0	MIT OR Apache-2.0	https://github.com/servo/core-foundation-rs
+dependency	cocoa-foundation	0.1.2	MIT OR Apache-2.0	https://github.com/servo/core-foundation-rs
+dependency	codespan-reporting	0.13.1	Apache-2.0	https://github.com/brendanzab/codespan
+dependency	color_quant	1.1.0	MIT	https://github.com/image-rs/color_quant.git
+dependency	colorchoice	1.0.5	MIT OR Apache-2.0	https://github.com/rust-cli/anstyle.git
+dependency	concurrent-queue	2.5.0	Apache-2.0 OR MIT	https://github.com/smol-rs/concurrent-queue
+dependency	console_error_panic_hook	0.1.7	Apache-2.0/MIT	https://github.com/rustwasm/console_error_panic_hook
+dependency	const-oid	0.10.3	Apache-2.0 OR MIT	https://github.com/RustCrypto/formats
+dependency	const-random	0.1.18	MIT OR Apache-2.0	https://github.com/tkaitchuck/constrandom
+dependency	const-random-macro	0.1.16	MIT OR Apache-2.0	https://github.com/tkaitchuck/constrandom
+dependency	convert_case	0.10.0	MIT	https://github.com/rutrum/convert-case
+dependency	core-foundation	0.10.1	MIT OR Apache-2.0	https://github.com/servo/core-foundation-rs
+dependency	core-foundation	0.9.4	MIT OR Apache-2.0	https://github.com/servo/core-foundation-rs
+dependency	core-foundation-sys	0.8.7	MIT OR Apache-2.0	https://github.com/servo/core-foundation-rs
+dependency	core-graphics	0.23.2	MIT OR Apache-2.0	https://github.com/servo/core-foundation-rs
+dependency	core-graphics	0.24.0	MIT OR Apache-2.0	https://github.com/servo/core-foundation-rs
+dependency	core-graphics-helmer-fork	0.24.0	MIT OR Apache-2.0	https://github.com/servo/core-foundation-rs
+dependency	core-graphics-types	0.1.3	MIT OR Apache-2.0	https://github.com/servo/core-foundation-rs
+dependency	core-graphics-types	0.2.0	MIT OR Apache-2.0	https://github.com/servo/core-foundation-rs
+dependency	core-text	21.0.0	MIT OR Apache-2.0	https://github.com/servo/core-foundation-rs
+dependency	core_detect	1.0.0	MIT/Apache-2.0	https://github.com/thomcc/core_detect
+dependency	core_maths	0.1.1	MIT	https://github.com/robertbastian/core_maths
+dependency	cosmic-text	0.19.0	MIT OR Apache-2.0	https://github.com/pop-os/cosmic-text
+dependency	cpufeatures	0.2.17	MIT OR Apache-2.0	https://github.com/RustCrypto/utils
+dependency	cpufeatures	0.3.1	MIT OR Apache-2.0	https://github.com/RustCrypto/utils
+dependency	crc32fast	1.5.5	MIT OR Apache-2.0	https://github.com/srijs/rust-crc32fast
+dependency	crossbeam	0.8.5	MIT OR Apache-2.0	https://github.com/crossbeam-rs/crossbeam
+dependency	crossbeam-channel	0.5.17	MIT OR Apache-2.0	https://github.com/crossbeam-rs/crossbeam
+dependency	crossbeam-deque	0.8.8	MIT OR Apache-2.0	https://github.com/crossbeam-rs/crossbeam
+dependency	crossbeam-epoch	0.9.21	MIT OR Apache-2.0	https://github.com/crossbeam-rs/crossbeam
+dependency	crossbeam-queue	0.3.14	MIT OR Apache-2.0	https://github.com/crossbeam-rs/crossbeam
+dependency	crossbeam-utils	0.8.23	MIT OR Apache-2.0	https://github.com/crossbeam-rs/crossbeam
+dependency	crunchy	0.2.4	MIT	https://github.com/eira-fransham/crunchy
+dependency	crypto-common	0.1.7	MIT OR Apache-2.0	https://github.com/RustCrypto/traits
+dependency	crypto-common	0.2.2	MIT OR Apache-2.0	https://github.com/RustCrypto/traits
+dependency	csv	1.4.0	Unlicense/MIT	https://github.com/BurntSushi/rust-csv
+dependency	csv-core	0.1.13	Unlicense/MIT	https://github.com/BurntSushi/rust-csv
+dependency	ctor	1.0.14	Apache-2.0 OR MIT	https://github.com/mmastrac/linktime
+dependency	ctutils	0.4.8	Apache-2.0 OR MIT	https://github.com/RustCrypto/utils
+dependency	data-url	0.3.2	MIT OR Apache-2.0	https://github.com/servo/rust-url
+dependency	deranged	0.5.9	MIT OR Apache-2.0	https://github.com/jhpratt/deranged
+dependency	derive_more	2.1.1	MIT	https://github.com/JelteF/derive_more
+dependency	derive_more-impl	2.1.1	MIT	https://github.com/JelteF/derive_more
+dependency	digest	0.10.7	MIT OR Apache-2.0	https://github.com/RustCrypto/traits
+dependency	digest	0.11.3	MIT OR Apache-2.0	https://github.com/RustCrypto/traits
+dependency	directories	5.0.1	MIT OR Apache-2.0	https://github.com/soc/directories-rs
+dependency	dirs	5.0.1	MIT OR Apache-2.0	https://github.com/soc/dirs-rs
+dependency	dirs	6.0.0	MIT OR Apache-2.0	https://github.com/soc/dirs-rs
+dependency	dirs-sys	0.4.1	MIT OR Apache-2.0	https://github.com/dirs-dev/dirs-sys-rs
+dependency	dirs-sys	0.5.0	MIT OR Apache-2.0	https://github.com/dirs-dev/dirs-sys-rs
+dependency	dispatch	0.2.0	MIT	http://github.com/SSheldon/rust-dispatch
+dependency	dispatch2	0.3.1	Zlib OR Apache-2.0 OR MIT	https://github.com/madsmtm/objc2
+dependency	displaydoc	0.2.7	MIT OR Apache-2.0	https://github.com/yaahc/displaydoc
+dependency	dlib	0.5.3	MIT	https://github.com/elinorbgr/dlib
+dependency	document-features	0.2.12	MIT OR Apache-2.0	https://github.com/slint-ui/document-features
+dependency	downcast-rs	1.2.1	MIT/Apache-2.0	https://github.com/marcianx/downcast-rs
+dependency	dunce	1.0.5	CC0-1.0 OR MIT-0 OR Apache-2.0	https://gitlab.com/kornelski/dunce
+dependency	dwrote	0.11.5	MPL-2.0	https://github.com/servo/dwrote-rs
+dependency	dyn-clone	1.0.20	MIT OR Apache-2.0	https://github.com/dtolnay/dyn-clone
+dependency	either	1.19.0	MIT OR Apache-2.0	https://github.com/rayon-rs/either
+dependency	embed-resource	3.0.12	MIT	https://github.com/nabijaczleweli/rust-embed-resource
+dependency	encoding_rs	0.8.44	(Apache-2.0 OR MIT) AND BSD-3-Clause	https://github.com/hsivonen/encoding_rs
+dependency	encoding_rs_io	0.1.8	MIT OR Apache-2.0	https://github.com/BurntSushi/encoding_rs_io
+dependency	endi	1.1.1	MIT	https://github.com/zeenix/endi
+dependency	enum-iterator	2.3.0	0BSD	https://github.com/stephaneyfx/enum-iterator.git
+dependency	enum-iterator-derive	1.5.0	0BSD	https://github.com/stephaneyfx/enum-iterator.git
+dependency	enumflags2	0.7.12	MIT OR Apache-2.0	https://github.com/meithecatte/enumflags2
+dependency	enumflags2_derive	0.7.12	MIT OR Apache-2.0	https://github.com/meithecatte/enumflags2
+dependency	enumn	0.1.14	MIT OR Apache-2.0	https://github.com/dtolnay/enumn
+dependency	equator	0.4.2	MIT	https://github.com/sarah-ek/equator/
+dependency	equator-macro	0.4.2	MIT	https://github.com/sarah-ek/equator/
+dependency	equivalent	1.0.3	Apache-2.0 OR MIT	https://github.com/indexmap-rs/equivalent
+dependency	errno	0.3.15	MIT OR Apache-2.0	https://github.com/lambda-fairy/rust-errno
+dependency	etagere	0.2.15	MIT/Apache-2.0	https://github.com/nical/etagere
+dependency	euclid	0.22.14	MIT OR Apache-2.0	https://github.com/servo/euclid
+dependency	event-listener	5.4.2	Apache-2.0 OR MIT	https://github.com/smol-rs/event-listener
+dependency	event-listener-strategy	0.5.4	Apache-2.0 OR MIT	https://github.com/smol-rs/event-listener-strategy
+dependency	exr	1.74.3	BSD-3-Clause	https://github.com/johannesvollmer/exrs
+dependency	fallible-iterator	0.2.0	MIT/Apache-2.0	https://github.com/sfackler/rust-fallible-iterator
+dependency	fallible-iterator	0.3.0	MIT/Apache-2.0	https://github.com/sfackler/rust-fallible-iterator
+dependency	fallible-streaming-iterator	0.1.9	MIT/Apache-2.0	https://github.com/sfackler/fallible-streaming-iterator
+dependency	fastrand	2.5.0	Apache-2.0 OR MIT	https://github.com/smol-rs/fastrand
+dependency	fax	0.2.7	MIT	https://github.com/pdf-rs/fax
+dependency	fdeflate	0.3.7	MIT OR Apache-2.0	https://github.com/image-rs/fdeflate
+dependency	filedescriptor	0.8.3	MIT	https://github.com/wezterm/wezterm
+dependency	find-msvc-tools	0.1.15	MIT OR Apache-2.0	https://github.com/rust-lang/cc-rs
+dependency	flate2	1.1.11	MIT OR Apache-2.0	https://github.com/rust-lang/flate2-rs
+dependency	float-cmp	0.9.0	MIT	https://github.com/mikedilger/float-cmp
+dependency	float-ord	0.3.2	MIT / Apache-2.0	https://github.com/notriddle/rust-float-ord
+dependency	float_next_after	1.0.0	MIT	https://gitlab.com/bronsonbdevost/next_afterf
+dependency	fluent-uri	0.1.4	MIT	https://github.com/yescallop/fluent-uri-rs
+dependency	flume	0.12.0	Apache-2.0/MIT	https://github.com/zesterer/flume
+dependency	fnv	1.0.7	Apache-2.0 / MIT	https://github.com/servo/rust-fnv
+dependency	foldhash	0.1.5	Zlib	https://github.com/orlp/foldhash
+dependency	foldhash	0.2.0	Zlib	https://github.com/orlp/foldhash
+dependency	font-types	0.11.3	MIT OR Apache-2.0	https://github.com/googlefonts/fontations
+dependency	font-types	0.12.7	MIT OR Apache-2.0	https://github.com/googlefonts/fontations
+dependency	fontconfig-parser	0.5.8	MIT	https://github.com/Riey/fontconfig-parser
+dependency	fontdb	0.23.0	MIT	https://github.com/RazrFalcon/fontdb
+dependency	foreign-types	0.5.0	MIT/Apache-2.0	https://github.com/sfackler/foreign-types
+dependency	foreign-types-macros	0.2.4	MIT/Apache-2.0	https://github.com/sfackler/foreign-types
+dependency	foreign-types-shared	0.3.1	MIT/Apache-2.0	https://github.com/sfackler/foreign-types
+dependency	form_urlencoded	1.2.2	MIT OR Apache-2.0	https://github.com/servo/rust-url
+dependency	freetype-sys	0.20.1	MIT	https://github.com/PistonDevelopers/freetype-sys.git
+dependency	fs_extra	1.3.0	MIT	https://github.com/webdesus/fs_extra
+dependency	futf	0.1.5	MIT / Apache-2.0	https://github.com/servo/futf
+dependency	futures	0.3.34	MIT OR Apache-2.0	https://github.com/rust-lang/futures-rs
+dependency	futures-channel	0.3.34	MIT OR Apache-2.0	https://github.com/rust-lang/futures-rs
+dependency	futures-core	0.3.34	MIT OR Apache-2.0	https://github.com/rust-lang/futures-rs
+dependency	futures-executor	0.3.34	MIT OR Apache-2.0	https://github.com/rust-lang/futures-rs
+dependency	futures-io	0.3.34	MIT OR Apache-2.0	https://github.com/rust-lang/futures-rs
+dependency	futures-lite	2.6.1	Apache-2.0 OR MIT	https://github.com/smol-rs/futures-lite
+dependency	futures-macro	0.3.34	MIT OR Apache-2.0	https://github.com/rust-lang/futures-rs
+dependency	futures-sink	0.3.34	MIT OR Apache-2.0	https://github.com/rust-lang/futures-rs
+dependency	futures-task	0.3.34	MIT OR Apache-2.0	https://github.com/rust-lang/futures-rs
+dependency	futures-util	0.3.34	MIT OR Apache-2.0	https://github.com/rust-lang/futures-rs
+dependency	generic-array	0.14.7	MIT	https://github.com/fizyk20/generic-array.git
+dependency	gethostname	1.1.0	Apache-2.0	https://codeberg.org/swsnr/gethostname.rs.git
+dependency	getrandom	0.2.17	MIT OR Apache-2.0	https://github.com/rust-random/getrandom
+dependency	getrandom	0.3.4	MIT OR Apache-2.0	https://github.com/rust-random/getrandom
+dependency	getrandom	0.4.3	MIT OR Apache-2.0	https://github.com/rust-random/getrandom
+dependency	gif	0.13.3	MIT OR Apache-2.0	https://github.com/image-rs/image-gif
+dependency	gif	0.14.2	MIT OR Apache-2.0	https://github.com/image-rs/image-gif
+dependency	gimli	0.34.0	MIT OR Apache-2.0	https://github.com/gimli-rs/gimli
+dependency	gl_generator	0.14.0	Apache-2.0	https://github.com/brendanzab/gl-rs/
+dependency	glob	0.3.4	MIT OR Apache-2.0	https://github.com/rust-lang/glob
+dependency	globset	0.4.21	Unlicense OR MIT	https://github.com/BurntSushi/ripgrep/tree/master/crates/globset
+dependency	globwalk	0.8.1	MIT	https://github.com/gilnaa/globwalk
+dependency	glow	0.17.0	MIT OR Apache-2.0 OR Zlib	https://github.com/grovesNL/glow
+dependency	glutin_wgl_sys	0.6.1	Apache-2.0	https://github.com/rust-windowing/glutin
+dependency	gpu-allocator	0.28.0	MIT OR Apache-2.0	https://github.com/Traverse-Research/gpu-allocator
+dependency	gpui-base	0.10.0	Apache-2.0	https://github.com/longbridge/gpui-kit
+dependency	gpui-component	0.10.0	Apache-2.0	https://github.com/longbridge/gpui-kit
+dependency	gpui-component-macros	0.10.0	Apache-2.0	-
+dependency	gpui-kit	0.10.0	Apache-2.0	https://github.com/longbridge/gpui-kit
+dependency	gpui-kit-assets	0.10.0	Apache-2.0	https://github.com/longbridge/gpui-kit
+dependency	gpui-pre	0.3.12	Apache-2.0	https://github.com/zed-industries/zed
+dependency	gpui-pre-apple	0.3.12	Apache-2.0	https://github.com/zed-industries/zed
+dependency	gpui-pre-collections	0.3.12	Apache-2.0	https://github.com/zed-industries/zed
+dependency	gpui-pre-derive-refineable	0.3.12	Apache-2.0	https://github.com/zed-industries/zed
+dependency	gpui-pre-http-client	0.3.12	Apache-2.0	https://github.com/zed-industries/zed
+dependency	gpui-pre-ios	0.3.12	Apache-2.0	https://github.com/zed-industries/zed
+dependency	gpui-pre-linux	0.3.12	Apache-2.0	https://github.com/zed-industries/zed
+dependency	gpui-pre-macos	0.3.12	Apache-2.0	https://github.com/zed-industries/zed
+dependency	gpui-pre-macros	0.3.12	Apache-2.0	https://github.com/zed-industries/zed
+dependency	gpui-pre-platform	0.3.12	Apache-2.0	https://github.com/zed-industries/zed
+dependency	gpui-pre-refineable	0.3.12	Apache-2.0	https://github.com/zed-industries/zed
+dependency	gpui-pre-reqwest	0.12.15	MIT OR Apache-2.0	https://github.com/seanmonstar/reqwest
+dependency	gpui-pre-scheduler	0.3.12	Apache-2.0	https://github.com/zed-industries/zed
+dependency	gpui-pre-shared-string	0.3.12	Apache-2.0	https://github.com/zed-industries/zed
+dependency	gpui-pre-sum-tree	0.3.12	Apache-2.0	https://github.com/zed-industries/zed
+dependency	gpui-pre-util	0.3.12	Apache-2.0	https://github.com/zed-industries/zed
+dependency	gpui-pre-web	0.3.12	Apache-2.0	https://github.com/zed-industries/zed
+dependency	gpui-pre-wgpu	0.3.12	Apache-2.0	https://github.com/zed-industries/zed
+dependency	gpui-pre-windows	0.3.12	Apache-2.0	https://github.com/zed-industries/zed
+dependency	gpui-pre-ztracing	0.3.12	Apache-2.0	https://github.com/zed-industries/zed
+dependency	gpui-pre-ztracing-macro	0.3.12	Apache-2.0	https://github.com/zed-industries/zed
+dependency	granit-parser	1.3.0	MIT OR Apache-2.0	https://github.com/bourumir-wyngs/granit-parser
+dependency	h2	0.4.20	MIT	https://github.com/hyperium/h2
+dependency	half	2.7.1	MIT OR Apache-2.0	https://github.com/VoidStarKat/half-rs
+dependency	harfrust	0.5.2	MIT	https://github.com/harfbuzz/harfrust
+dependency	hash32	0.3.1	MIT OR Apache-2.0	https://github.com/japaric/hash32
+dependency	hashbrown	0.14.5	MIT OR Apache-2.0	https://github.com/rust-lang/hashbrown
+dependency	hashbrown	0.15.5	MIT OR Apache-2.0	https://github.com/rust-lang/hashbrown
+dependency	hashbrown	0.16.1	MIT OR Apache-2.0	https://github.com/rust-lang/hashbrown
+dependency	hashbrown	0.17.1	MIT OR Apache-2.0	https://github.com/rust-lang/hashbrown
+dependency	hashlink	0.9.1	MIT OR Apache-2.0	https://github.com/kyren/hashlink
+dependency	heapless	0.9.4	MIT OR Apache-2.0	https://github.com/rust-embedded/heapless
+dependency	heck	0.4.1	MIT OR Apache-2.0	https://github.com/withoutboats/heck
+dependency	heck	0.5.0	MIT OR Apache-2.0	https://github.com/withoutboats/heck
+dependency	hermit-abi	0.5.3	MIT OR Apache-2.0	https://github.com/hermit-os/hermit-rs
+dependency	hex	0.4.3	MIT OR Apache-2.0	https://github.com/KokaKiwi/rust-hex
+dependency	hkdf	0.12.4	MIT OR Apache-2.0	https://github.com/RustCrypto/KDFs/
+dependency	hmac	0.12.1	MIT OR Apache-2.0	https://github.com/RustCrypto/MACs
+dependency	hmac	0.13.0	MIT OR Apache-2.0	https://github.com/RustCrypto/MACs
+dependency	html5ever	0.27.0	MIT OR Apache-2.0	https://github.com/servo/html5ever
+dependency	http	1.5.0	MIT OR Apache-2.0	https://github.com/hyperium/http
+dependency	http-body	1.1.0	MIT	https://github.com/hyperium/http-body
+dependency	http-body-util	0.1.5	MIT	https://github.com/hyperium/http-body
+dependency	httparse	1.10.1	MIT OR Apache-2.0	https://github.com/seanmonstar/httparse
+dependency	httpdate	1.0.3	MIT OR Apache-2.0	https://github.com/pyfisch/httpdate
+dependency	hybrid-array	0.4.15	MIT OR Apache-2.0	https://github.com/RustCrypto/hybrid-array
+dependency	hyper	1.12.0	MIT	https://github.com/hyperium/hyper
+dependency	hyper-rustls	0.27.10	Apache-2.0 OR ISC OR MIT	https://github.com/rustls/hyper-rustls
+dependency	hyper-util	0.1.21	MIT	https://github.com/hyperium/hyper-util
+dependency	iana-time-zone	0.1.65	MIT OR Apache-2.0	https://github.com/strawlab/iana-time-zone
+dependency	iana-time-zone-haiku	0.1.2	MIT OR Apache-2.0	https://github.com/strawlab/iana-time-zone
+dependency	icu_collections	2.4.0	Unicode-3.0	https://github.com/unicode-org/icu4x
+dependency	icu_locale_core	2.4.0	Unicode-3.0	https://github.com/unicode-org/icu4x
+dependency	icu_locale_fallback	2.4.0	Unicode-3.0	https://github.com/unicode-org/icu4x
+dependency	icu_locale_fallback_data	2.4.0	Unicode-3.0	https://github.com/unicode-org/icu4x
+dependency	icu_normalizer	2.4.0	Unicode-3.0	https://github.com/unicode-org/icu4x
+dependency	icu_normalizer_data	2.4.0	Unicode-3.0	https://github.com/unicode-org/icu4x
+dependency	icu_properties	2.4.0	Unicode-3.0	https://github.com/unicode-org/icu4x
+dependency	icu_properties_data	2.4.0	Unicode-3.0	https://github.com/unicode-org/icu4x
+dependency	icu_provider	2.4.0	Unicode-3.0	https://github.com/unicode-org/icu4x
+dependency	icu_segmenter	2.4.0	Unicode-3.0	https://github.com/unicode-org/icu4x
+dependency	icu_segmenter_data	2.4.0	Unicode-3.0	https://github.com/unicode-org/icu4x
+dependency	idna	1.1.0	MIT OR Apache-2.0	https://github.com/servo/rust-url/
+dependency	idna_adapter	1.2.2	Apache-2.0 OR MIT	https://github.com/hsivonen/idna_adapter
+dependency	ignore	0.4.34	Unlicense OR MIT	https://github.com/BurntSushi/ripgrep/tree/master/crates/ignore
+dependency	image	0.25.10	MIT OR Apache-2.0	https://github.com/image-rs/image
+dependency	image-webp	0.2.4	MIT OR Apache-2.0	https://github.com/image-rs/image-webp
+dependency	imagesize	0.13.0	MIT	https://github.com/Roughsketch/imagesize
+dependency	imagesize	0.14.0	MIT	https://github.com/Roughsketch/imagesize
+dependency	imgref	1.12.3	CC0-1.0 OR Apache-2.0	https://github.com/kornelski/imgref
+dependency	indexmap	2.14.2	Apache-2.0 OR MIT	https://github.com/indexmap-rs/indexmap
+dependency	inotify	0.11.5	ISC	https://github.com/hannobraun/inotify-rs
+dependency	inotify-sys	0.1.8	ISC	https://github.com/hannobraun/inotify-sys
+dependency	inout	0.1.4	MIT OR Apache-2.0	https://github.com/RustCrypto/utils
+dependency	instant	0.1.13	BSD-3-Clause	https://github.com/sebcrozet/instant
+dependency	interpolate_name	0.2.4	MIT	https://github.com/lu-zero/interpolate_name
+dependency	inventory	0.3.25	MIT OR Apache-2.0	https://github.com/dtolnay/inventory
+dependency	ipnet	2.12.2	MIT OR Apache-2.0	https://github.com/krisprice/ipnet
+dependency	is-docker	0.2.0	MIT	https://github.com/TheLarkInn/is-docker
+dependency	is-wsl	0.4.0	MIT	https://github.com/TheLarkInn/is-wsl
+dependency	is_terminal_polyfill	1.70.2	MIT OR Apache-2.0	https://github.com/polyfill-rs/is_terminal_polyfill
+dependency	itertools	0.11.0	MIT OR Apache-2.0	https://github.com/rust-itertools/itertools
+dependency	itertools	0.13.0	MIT OR Apache-2.0	https://github.com/rust-itertools/itertools
+dependency	itertools	0.14.0	MIT OR Apache-2.0	https://github.com/rust-itertools/itertools
+dependency	itoa	1.0.19	MIT OR Apache-2.0	https://github.com/dtolnay/itoa
+dependency	jni-sys	0.3.1	MIT OR Apache-2.0	https://github.com/jni-rs/jni-sys
+dependency	jni-sys	0.4.1	MIT OR Apache-2.0	https://github.com/jni-rs/jni-sys
+dependency	jni-sys-macros	0.4.1	MIT OR Apache-2.0	https://github.com/jni-rs/jni-sys
+dependency	jobserver	0.1.35	MIT OR Apache-2.0	https://github.com/rust-lang/jobserver-rs
+dependency	js-sys	0.3.107	MIT OR Apache-2.0	https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/js-sys
+dependency	keyed_priority_queue	0.4.2	MIT	https://github.com/AngelicosPhosphoros/keyed_priority_queue
+dependency	khronos-egl	6.0.0	MIT/Apache-2.0	https://github.com/timothee-haudebourg/khronos-egl
+dependency	khronos_api	3.1.0	Apache-2.0	https://github.com/brendanzab/gl-rs/
+dependency	kqueue	1.2.1	MIT	https://gitlab.com/rust-kqueue/rust-kqueue
+dependency	kqueue-sys	1.1.2	MIT	https://gitlab.com/rust-kqueue/rust-kqueue-sys
+dependency	kurbo	0.11.3	Apache-2.0 OR MIT	https://github.com/linebender/kurbo
+dependency	kurbo	0.13.1	Apache-2.0 OR MIT	https://github.com/linebender/kurbo
+dependency	lazy_static	1.5.1	MIT OR Apache-2.0	https://github.com/rust-lang-nursery/lazy-static.rs
+dependency	lebe	0.5.3	BSD-3-Clause	https://github.com/johannesvollmer/lebe
+dependency	libc	0.2.191	MIT OR Apache-2.0	https://github.com/rust-lang/libc
+dependency	libfuzzer-sys	0.4.13	(MIT OR Apache-2.0) AND NCSA	https://github.com/rust-fuzz/libfuzzer
+dependency	libloading	0.8.9	ISC	https://github.com/nagisa/rust_libloading/
+dependency	libm	0.2.16	MIT	https://github.com/rust-lang/compiler-builtins
+dependency	libredox	0.1.25	MIT	https://gitlab.redox-os.org/redox-os/libredox.git
+dependency	libsqlite3-sys	0.30.1	MIT	https://github.com/rusqlite/rusqlite
+dependency	linebender_resource_handle	0.1.1	Apache-2.0 OR MIT	https://github.com/linebender/raw_resource_handle
+dependency	link-section	0.19.4	Apache-2.0 OR MIT	https://github.com/mmastrac/linktime
+dependency	linktime-proc-macro	0.2.3	Apache-2.0 OR MIT	https://github.com/mmastrac/linktime
+dependency	linux-raw-sys	0.12.1	Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT	https://github.com/sunfishcode/linux-raw-sys
+dependency	litemap	0.8.3	Unicode-3.0	https://github.com/unicode-org/icu4x
+dependency	litrs	1.0.1	MIT OR Apache-2.0	https://github.com/LukasKalbertodt/litrs
+dependency	lock_api	0.4.14	MIT OR Apache-2.0	https://github.com/Amanieu/parking_lot
+dependency	log	0.4.35	MIT OR Apache-2.0	https://github.com/rust-lang/log
+dependency	loop9	0.1.5	MIT	https://gitlab.com/kornelski/loop9.git
+dependency	lru	0.12.5	MIT	https://github.com/jeromefroe/lru-rs.git
+dependency	lru-slab	0.1.3	MIT OR Apache-2.0 OR Zlib	https://github.com/Ralith/lru-slab
+dependency	lsp-types	0.97.0	MIT	https://github.com/gluon-lang/lsp-types
+dependency	lyon	1.0.19	MIT OR Apache-2.0	https://github.com/nical/lyon
+dependency	lyon_algorithms	1.0.22	MIT OR Apache-2.0	https://github.com/nical/lyon
+dependency	lyon_geom	1.0.20	MIT OR Apache-2.0	https://github.com/nical/lyon
+dependency	lyon_path	1.0.19	MIT OR Apache-2.0	https://github.com/nical/lyon
+dependency	lyon_tessellation	1.0.23	MIT OR Apache-2.0	https://github.com/nical/lyon
+dependency	mac	0.1.1	MIT/Apache-2.0	https://github.com/reem/rust-mac.git
+dependency	mac-notification-sys	0.6.15	MIT/Apache-2.0	https://github.com/h4llow3En/mac-notification-sys
+dependency	mach2	0.6.0	BSD-2-Clause OR MIT OR Apache-2.0	https://github.com/JohnTitor/mach2
+dependency	malloc_buf	0.0.6	MIT	https://github.com/SSheldon/malloc_buf
+dependency	markdown	1.0.0	MIT	https://github.com/wooorm/markdown-rs
+dependency	markup5ever	0.12.1	MIT OR Apache-2.0	https://github.com/servo/html5ever
+dependency	markup5ever_rcdom	0.3.0	MIT OR Apache-2.0	https://github.com/servo/html5ever
+dependency	matchers	0.2.0	MIT	https://github.com/hawkw/matchers
+dependency	matchit	0.8.4	MIT AND BSD-3-Clause	https://github.com/ibraheemdev/matchit
+dependency	maybe-rayon	0.1.1	MIT	https://github.com/shssoichiro/maybe-rayon
+dependency	md-5	0.10.6	MIT OR Apache-2.0	https://github.com/RustCrypto/hashes
+dependency	md-5	0.11.0	MIT OR Apache-2.0	https://github.com/RustCrypto/hashes
+dependency	memchr	2.8.3	Unlicense OR MIT	https://github.com/BurntSushi/memchr
+dependency	memmap2	0.9.12	MIT OR Apache-2.0	https://github.com/RazrFalcon/memmap2-rs
+dependency	memoffset	0.9.1	MIT	https://github.com/Gilnaa/memoffset
+dependency	mime	0.3.18	MIT OR Apache-2.0	https://github.com/hyperium/mime
+dependency	mime_guess	2.0.5	MIT	https://github.com/abonander/mime_guess
+dependency	minimal-lexical	0.2.1	MIT/Apache-2.0	https://github.com/Alexhuszagh/minimal-lexical
+dependency	miniz_oxide	0.8.9	MIT OR Zlib OR Apache-2.0	https://github.com/Frommi/miniz_oxide/tree/master/miniz_oxide
+dependency	miniz_oxide	0.9.1	MIT OR Zlib OR Apache-2.0	https://github.com/Frommi/miniz_oxide/tree/master/miniz_oxide
+dependency	mio	1.2.5	MIT	https://github.com/tokio-rs/mio
+dependency	moxcms	0.8.1	BSD-3-Clause OR Apache-2.0	https://github.com/awxkee/moxcms.git
+dependency	multiversion	0.8.1	MIT OR Apache-2.0	https://github.com/calebzulawski/multiversion
+dependency	multiversion-macros	0.8.1	MIT OR Apache-2.0	https://github.com/calebzulawski/multiversion
+dependency	multiversion_no_op	1.0.0	Apache-2.0 OR MIT	https://github.com/hsivonen/multiversion_no_op
+dependency	mysql_async	0.34.2	MIT/Apache-2.0	https://github.com/blackbeam/mysql_async
+dependency	mysql_common	0.32.4	MIT/Apache-2.0	https://github.com/blackbeam/rust_mysql_common
+dependency	naga	30.0.2	MIT OR Apache-2.0	https://github.com/gfx-rs/wgpu
+dependency	naga-types	30.0.2	MIT OR Apache-2.0	https://github.com/gfx-rs/wgpu
+dependency	ndk-sys	0.6.0+11769913	MIT OR Apache-2.0	https://github.com/rust-mobile/ndk
+dependency	new_debug_unreachable	1.0.6	MIT	https://github.com/mbrubeck/rust-debug-unreachable
+dependency	no_std_io2	0.9.4	Apache-2.0 OR MIT	https://github.com/wcampbell0x2a/no-std-io2
+dependency	nohash-hasher	0.2.0	Apache-2.0 OR MIT	https://github.com/paritytech/nohash-hasher
+dependency	nom	7.1.3	MIT	https://github.com/Geal/nom
+dependency	nom	8.0.0	MIT	https://github.com/rust-bakery/nom
+dependency	noop_proc_macro	0.3.0	MIT	https://github.com/lu-zero/noop_proc_macro
+dependency	normpath	1.5.2	MIT OR Apache-2.0	https://github.com/dylni/normpath
+dependency	notify	8.2.2	CC0-1.0	https://github.com/notify-rs/notify.git
+dependency	notify-rust	4.19.0	MIT OR Apache-2.0	https://github.com/hoodie/notify-rust
+dependency	notify-types	2.3.1	MIT OR Apache-2.0	https://github.com/notify-rs/notify.git
+dependency	ntapi	0.4.3	Apache-2.0 OR MIT	https://github.com/MSxDOS/ntapi
+dependency	nu-ansi-term	0.50.3	MIT	https://github.com/nushell/nu-ansi-term
+dependency	num	0.4.3	MIT OR Apache-2.0	https://github.com/rust-num/num
+dependency	num-bigint	0.4.8	MIT OR Apache-2.0	https://github.com/rust-num/num-bigint
+dependency	num-bigint-dig	0.9.1	MIT/Apache-2.0	https://github.com/dignifiedquire/num-bigint
+dependency	num-complex	0.4.6	MIT OR Apache-2.0	https://github.com/rust-num/num-complex
+dependency	num-conv	0.2.2	MIT OR Apache-2.0	https://github.com/jhpratt/num-conv
+dependency	num-derive	0.4.2	MIT OR Apache-2.0	https://github.com/rust-num/num-derive
+dependency	num-integer	0.1.47	MIT OR Apache-2.0	https://github.com/rust-num/num-integer
+dependency	num-iter	0.1.46	MIT OR Apache-2.0	https://github.com/rust-num/num-iter
+dependency	num-rational	0.4.2	MIT OR Apache-2.0	https://github.com/rust-num/num-rational
+dependency	num-traits	0.2.19	MIT OR Apache-2.0	https://github.com/rust-num/num-traits
+dependency	num_cpus	1.17.0	MIT OR Apache-2.0	https://github.com/seanmonstar/num_cpus
+dependency	objc	0.2.7	MIT	http://github.com/SSheldon/rust-objc
+dependency	objc-foundation	0.1.1	MIT	http://github.com/SSheldon/rust-objc-foundation
+dependency	objc-sys	0.3.5	MIT	https://github.com/madsmtm/objc2
+dependency	objc2	0.5.3	MIT	https://github.com/madsmtm/objc2
+dependency	objc2	0.6.5	MIT	https://github.com/madsmtm/objc2
+dependency	objc2-app-kit	0.2.2	MIT	https://github.com/madsmtm/objc2
+dependency	objc2-app-kit	0.3.2	Zlib OR Apache-2.0 OR MIT	https://github.com/madsmtm/objc2
+dependency	objc2-cloud-kit	0.3.2	Zlib OR Apache-2.0 OR MIT	https://github.com/madsmtm/objc2
+dependency	objc2-core-data	0.2.2	MIT	https://github.com/madsmtm/objc2
+dependency	objc2-core-data	0.3.2	Zlib OR Apache-2.0 OR MIT	https://github.com/madsmtm/objc2
+dependency	objc2-core-foundation	0.3.2	Zlib OR Apache-2.0 OR MIT	https://github.com/madsmtm/objc2
+dependency	objc2-core-graphics	0.3.2	Zlib OR Apache-2.0 OR MIT	https://github.com/madsmtm/objc2
+dependency	objc2-core-image	0.2.2	MIT	https://github.com/madsmtm/objc2
+dependency	objc2-core-image	0.3.2	Zlib OR Apache-2.0 OR MIT	https://github.com/madsmtm/objc2
+dependency	objc2-core-services	0.3.2	Zlib OR Apache-2.0 OR MIT	https://github.com/madsmtm/objc2
+dependency	objc2-core-text	0.3.2	Zlib OR Apache-2.0 OR MIT	https://github.com/madsmtm/objc2
+dependency	objc2-core-video	0.3.2	Zlib OR Apache-2.0 OR MIT	https://github.com/madsmtm/objc2
+dependency	objc2-encode	4.1.0	MIT	https://github.com/madsmtm/objc2
+dependency	objc2-foundation	0.2.2	MIT	https://github.com/madsmtm/objc2
+dependency	objc2-foundation	0.3.2	MIT	https://github.com/madsmtm/objc2
+dependency	objc2-io-surface	0.3.2	Zlib OR Apache-2.0 OR MIT	https://github.com/madsmtm/objc2
+dependency	objc2-metal	0.2.2	MIT	https://github.com/madsmtm/objc2
+dependency	objc2-metal	0.3.2	Zlib OR Apache-2.0 OR MIT	https://github.com/madsmtm/objc2
+dependency	objc2-quartz-core	0.2.2	MIT	https://github.com/madsmtm/objc2
+dependency	objc2-quartz-core	0.3.2	Zlib OR Apache-2.0 OR MIT	https://github.com/madsmtm/objc2
+dependency	objc2-security	0.3.2	Zlib OR Apache-2.0 OR MIT	https://github.com/madsmtm/objc2
+dependency	objc2-system-configuration	0.3.2	Zlib OR Apache-2.0 OR MIT	https://github.com/madsmtm/objc2
+dependency	objc2-ui-kit	0.3.2	Zlib OR Apache-2.0 OR MIT	https://github.com/madsmtm/objc2
+dependency	objc2-uniform-type-identifiers	0.3.2	Zlib OR Apache-2.0 OR MIT	https://github.com/madsmtm/objc2
+dependency	objc2-user-notifications	0.3.2	Zlib OR Apache-2.0 OR MIT	https://github.com/madsmtm/objc2
+dependency	objc_exception	0.1.2	MIT	http://github.com/SSheldon/rust-objc-exception
+dependency	objc_id	0.1.1	MIT	http://github.com/SSheldon/rust-objc-id
+dependency	object	0.40.0	Apache-2.0 OR MIT	https://github.com/gimli-rs/object
+dependency	once_cell	1.21.4	MIT OR Apache-2.0	https://github.com/matklad/once_cell
+dependency	once_cell_polyfill	1.70.2	MIT OR Apache-2.0	https://github.com/polyfill-rs/once_cell_polyfill
+dependency	oo7	0.6.0	MIT	https://github.com/linux-credentials/oo7
+dependency	open	5.4.5	MIT	https://github.com/Byron/open-rs
+dependency	openssl-probe	0.2.2	MIT OR Apache-2.0	https://github.com/rustls/openssl-probe
+dependency	option-ext	0.2.0	MPL-2.0	https://github.com/soc/option-ext.git
+dependency	ordered-float	5.5.1	MIT	https://github.com/reem/rust-ordered-float
+dependency	ordered-stream	0.2.0	MIT OR Apache-2.0	https://github.com/danieldg/ordered-stream
+dependency	parking	2.2.1	Apache-2.0 OR MIT	https://github.com/smol-rs/parking
+dependency	parking_lot	0.12.5	MIT OR Apache-2.0	https://github.com/Amanieu/parking_lot
+dependency	parking_lot_core	0.9.12	MIT OR Apache-2.0	https://github.com/Amanieu/parking_lot
+dependency	paste	1.0.15	MIT OR Apache-2.0	https://github.com/dtolnay/paste
+dependency	pastey	0.1.1	MIT OR Apache-2.0	https://github.com/as1100k/pastey
+dependency	pathfinder_geometry	0.5.1	MIT/Apache-2.0	https://github.com/servo/pathfinder
+dependency	pathfinder_simd	0.5.6	MIT OR Apache-2.0	https://github.com/servo/pathfinder
+dependency	pbkdf2	0.12.2	MIT OR Apache-2.0	https://github.com/RustCrypto/password-hashes/tree/master/pbkdf2
+dependency	pem	3.0.6	MIT	https://github.com/jcreekmore/pem-rs.git
+dependency	percent-encoding	2.3.2	MIT OR Apache-2.0	https://github.com/servo/rust-url/
+dependency	phf	0.11.3	MIT	https://github.com/rust-phf/rust-phf
+dependency	phf	0.13.1	MIT	https://github.com/rust-phf/rust-phf
+dependency	phf_codegen	0.11.3	MIT	https://github.com/rust-phf/rust-phf
+dependency	phf_generator	0.11.3	MIT	https://github.com/rust-phf/rust-phf
+dependency	phf_generator	0.13.1	MIT	https://github.com/rust-phf/rust-phf
+dependency	phf_macros	0.13.1	MIT	https://github.com/rust-phf/rust-phf
+dependency	phf_shared	0.11.3	MIT	https://github.com/rust-phf/rust-phf
+dependency	phf_shared	0.13.1	MIT	https://github.com/rust-phf/rust-phf
+dependency	pico-args	0.5.0	MIT	https://github.com/RazrFalcon/pico-args
+dependency	pin-project	1.1.13	Apache-2.0 OR MIT	https://github.com/taiki-e/pin-project
+dependency	pin-project-internal	1.1.13	Apache-2.0 OR MIT	https://github.com/taiki-e/pin-project
+dependency	pin-project-lite	0.2.17	Apache-2.0 OR MIT	https://github.com/taiki-e/pin-project-lite
+dependency	piper	0.2.5	MIT OR Apache-2.0	https://github.com/smol-rs/piper
+dependency	pkg-config	0.3.34	MIT OR Apache-2.0	https://github.com/rust-lang/pkg-config-rs
+dependency	plist	1.10.4	MIT	https://github.com/ebarnard/rust-plist/
+dependency	png	0.17.16	MIT OR Apache-2.0	https://github.com/image-rs/image-png
+dependency	png	0.18.1	MIT OR Apache-2.0	https://github.com/image-rs/image-png
+dependency	polling	3.11.0	Apache-2.0 OR MIT	https://github.com/smol-rs/polling
+dependency	pollster	0.4.0	Apache-2.0/MIT	https://github.com/zesterer/pollster
+dependency	polycool	0.4.0	MIT OR Apache-2.0	https://github.com/linebender/kurbo
+dependency	portable-atomic	1.15.0	Apache-2.0 OR MIT	https://github.com/taiki-e/portable-atomic
+dependency	portable-atomic-util	0.2.8	Apache-2.0 OR MIT	https://github.com/taiki-e/portable-atomic-util
+dependency	postgres-protocol	0.6.12	MIT OR Apache-2.0	https://github.com/rust-postgres/rust-postgres
+dependency	postgres-types	0.2.14	MIT OR Apache-2.0	https://github.com/rust-postgres/rust-postgres
+dependency	potential_utf	0.1.6	Unicode-3.0	https://github.com/unicode-org/icu4x
+dependency	powerfmt	0.2.1	MIT OR Apache-2.0	https://github.com/jhpratt/powerfmt
+dependency	ppv-lite86	0.2.21	MIT OR Apache-2.0	https://github.com/cryptocorrosion/cryptocorrosion
+dependency	precomputed-hash	0.1.1	MIT	https://github.com/emilio/precomputed-hash
+dependency	presser	0.3.1	MIT OR Apache-2.0	https://github.com/EmbarkStudios/presser
+dependency	proc-macro-crate	3.5.0	MIT OR Apache-2.0	https://github.com/bkchr/proc-macro-crate
+dependency	proc-macro2	1.0.107	MIT OR Apache-2.0	https://github.com/dtolnay/proc-macro2
+dependency	profiling	1.0.18	MIT OR Apache-2.0	https://github.com/aclysma/profiling
+dependency	profiling-procmacros	1.0.18	MIT OR Apache-2.0	https://github.com/aclysma/profiling
+dependency	pxfm	0.1.30	BSD-3-Clause OR Apache-2.0	https://github.com/awxkee/pxfm
+dependency	qoi	0.4.1	MIT/Apache-2.0	https://github.com/aldanor/qoi-rust
+dependency	quick-error	2.0.1	MIT/Apache-2.0	http://github.com/tailhook/quick-error
+dependency	quick-xml	0.41.0	MIT	https://github.com/tafia/quick-xml
+dependency	quick-xml	0.42.0	MIT	https://github.com/tafia/quick-xml
+dependency	quinn	0.11.12	MIT OR Apache-2.0	https://github.com/quinn-rs/quinn
+dependency	quinn-proto	0.11.19	MIT OR Apache-2.0	https://github.com/quinn-rs/quinn
+dependency	quinn-udp	0.5.16	MIT OR Apache-2.0	https://github.com/quinn-rs/quinn
+dependency	quote	1.0.47	MIT OR Apache-2.0	https://github.com/dtolnay/quote
+dependency	r-efi	5.3.0	MIT OR Apache-2.0 OR LGPL-2.1-or-later	https://github.com/r-efi/r-efi
+dependency	r-efi	6.0.0	MIT OR Apache-2.0 OR LGPL-2.1-or-later	https://github.com/r-efi/r-efi
+dependency	rand	0.10.4	MIT OR Apache-2.0	https://github.com/rust-random/rand
+dependency	rand	0.8.8	MIT OR Apache-2.0	https://github.com/rust-random/rand
+dependency	rand	0.9.5	MIT OR Apache-2.0	https://github.com/rust-random/rand
+dependency	rand_chacha	0.3.1	MIT OR Apache-2.0	https://github.com/rust-random/rand
+dependency	rand_chacha	0.9.0	MIT OR Apache-2.0	https://github.com/rust-random/rand
+dependency	rand_core	0.10.1	MIT OR Apache-2.0	https://github.com/rust-random/rand_core
+dependency	rand_core	0.6.4	MIT OR Apache-2.0	https://github.com/rust-random/rand
+dependency	rand_core	0.9.5	MIT OR Apache-2.0	https://github.com/rust-random/rand
+dependency	rand_pcg	0.10.3	MIT OR Apache-2.0	https://github.com/rust-random/rngs
+dependency	range-alloc	0.1.5	MIT OR Apache-2.0	https://github.com/gfx-rs/range-alloc
+dependency	rangemap	1.8.0	MIT/Apache-2.0	https://github.com/jeffparsons/rangemap
+dependency	rav1e	0.8.1	BSD-2-Clause	https://github.com/xiph/rav1e/
+dependency	ravif	0.13.0	BSD-3-Clause	https://github.com/kornelski/cavif-rs
+dependency	raw-window-handle	0.6.2	MIT OR Apache-2.0 OR Zlib	https://github.com/rust-windowing/raw-window-handle
+dependency	raw-window-metal	1.1.0	MIT OR Apache-2.0	https://github.com/rust-windowing/raw-window-metal
+dependency	rayon	1.12.0	MIT OR Apache-2.0	https://github.com/rayon-rs/rayon
+dependency	rayon-core	1.13.0	MIT OR Apache-2.0	https://github.com/rayon-rs/rayon
+dependency	read-fonts	0.37.0	MIT OR Apache-2.0	https://github.com/googlefonts/fontations
+dependency	read-fonts	0.41.0	MIT OR Apache-2.0	https://github.com/googlefonts/fontations
+dependency	redox_syscall	0.5.18	MIT	https://gitlab.redox-os.org/redox-os/syscall
+dependency	redox_users	0.4.6	MIT	https://gitlab.redox-os.org/redox-os/users
+dependency	redox_users	0.5.3	MIT	https://gitlab.redox-os.org/redox-os/users
+dependency	ref-cast	1.0.27	MIT OR Apache-2.0	https://github.com/dtolnay/ref-cast
+dependency	ref-cast-impl	1.0.27	MIT OR Apache-2.0	https://github.com/dtolnay/ref-cast
+dependency	regex	1.13.2	MIT OR Apache-2.0	https://github.com/rust-lang/regex
+dependency	regex-automata	0.4.19	MIT OR Apache-2.0	https://github.com/rust-lang/regex
+dependency	regex-syntax	0.8.12	MIT OR Apache-2.0	https://github.com/rust-lang/regex
+dependency	renderdoc-sys	1.1.0	MIT OR Apache-2.0	https://github.com/ebkalderon/renderdoc-rs
+dependency	reqwest	0.12.28	MIT OR Apache-2.0	https://github.com/seanmonstar/reqwest
+dependency	resvg	0.45.1	Apache-2.0 OR MIT	https://github.com/linebender/resvg
+dependency	resvg	0.46.0	Apache-2.0 OR MIT	https://github.com/linebender/resvg
+dependency	rgb	0.8.53	MIT	https://github.com/kornelski/rust-rgb
+dependency	ring	0.17.14	Apache-2.0 AND ISC	https://github.com/briansmith/ring
+dependency	ropey	2.0.0-beta.1	MIT OR Apache-2.0	https://github.com/cessen/ropey
+dependency	roxmltree	0.20.0	MIT OR Apache-2.0	https://github.com/RazrFalcon/roxmltree
+dependency	roxmltree	0.21.2	MIT OR Apache-2.0	https://github.com/RazrFalcon/roxmltree
+dependency	rusqlite	0.32.1	MIT	https://github.com/rusqlite/rusqlite
+dependency	rust-embed	8.14.0	MIT	https://pyrossh.dev/repos/rust-embed
+dependency	rust-embed-impl	8.14.0	MIT	https://pyrossh.dev/repos/rust-embed
+dependency	rust-embed-utils	8.14.0	MIT	https://pyrossh.dev/repos/rust-embed
+dependency	rust-i18n	4.2.4	MIT	https://github.com/longbridge/rust-i18n
+dependency	rust-i18n-macro	4.2.4	MIT	https://github.com/longbridge/rust-i18n
+dependency	rust-i18n-support	4.2.4	MIT	https://github.com/longbridge/rust-i18n
+dependency	rustc-demangle	0.1.28	MIT/Apache-2.0	https://github.com/rust-lang/rustc-demangle
+dependency	rustc-hash	1.1.0	Apache-2.0/MIT	https://github.com/rust-lang-nursery/rustc-hash
+dependency	rustc-hash	2.1.3	Apache-2.0 OR MIT	https://github.com/rust-lang/rustc-hash
+dependency	rustc_version	0.4.1	MIT OR Apache-2.0	https://github.com/djc/rustc-version-rs
+dependency	rustix	1.1.6	Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT	https://github.com/bytecodealliance/rustix
+dependency	rustls	0.23.46	Apache-2.0 OR ISC OR MIT	https://github.com/rustls/rustls
+dependency	rustls-native-certs	0.8.5	Apache-2.0 OR ISC OR MIT	https://github.com/rustls/rustls-native-certs
+dependency	rustls-pemfile	2.2.0	Apache-2.0 OR ISC OR MIT	https://github.com/rustls/pemfile
+dependency	rustls-pki-types	1.16.0	MIT OR Apache-2.0	https://github.com/rustls/pki-types
+dependency	rustls-webpki	0.103.17	ISC	https://github.com/rustls/webpki
+dependency	rustversion	1.0.23	MIT OR Apache-2.0	https://github.com/dtolnay/rustversion
+dependency	rustybuzz	0.20.1	MIT	https://github.com/harfbuzz/rustybuzz
+dependency	ryu	1.0.23	Apache-2.0 OR BSL-1.0	https://github.com/dtolnay/ryu
+dependency	same-file	1.0.6	Unlicense/MIT	https://github.com/BurntSushi/same-file
+dependency	saturating	0.1.0	MIT	https://github.com/breeswish/saturating-rs
+dependency	schannel	0.1.30	MIT	https://github.com/steffengy/schannel-rs
+dependency	schemars	1.2.3	MIT	https://github.com/GREsau/schemars
+dependency	schemars_derive	1.2.3	MIT	https://github.com/GREsau/schemars
+dependency	scoped-tls	1.0.1	MIT/Apache-2.0	https://github.com/alexcrichton/scoped-tls
+dependency	scopeguard	1.2.0	MIT OR Apache-2.0	https://github.com/bluss/scopeguard
+dependency	screencapturekit	0.2.8	MIT OR Apache-2.0	https://github.com/svtlabs/screencapturekit-rs/tree/main/screencapturekit
+dependency	screencapturekit-sys	0.2.8	MIT OR Apache-2.0	https://github.com/svtlabs/screencapturekit-rs/tree/main/screencapturekit-sys
+dependency	seahash	4.1.0	MIT	https://gitlab.redox-os.org/redox-os/seahash
+dependency	security-framework	3.7.0	MIT OR Apache-2.0	https://github.com/kornelski/rust-security-framework
+dependency	security-framework-sys	2.17.0	MIT OR Apache-2.0	https://github.com/kornelski/rust-security-framework
+dependency	self_cell	1.3.0	Apache-2.0 OR GPL-2.0-only	https://github.com/Voultapher/self_cell
+dependency	semver	1.0.28	MIT OR Apache-2.0	https://github.com/dtolnay/semver
+dependency	serde	1.0.229	MIT OR Apache-2.0	https://github.com/serde-rs/serde
+dependency	serde-saphyr	1.3.0	MIT OR Apache-2.0	https://github.com/bourumir-wyngs/serde-saphyr
+dependency	serde_bytes	0.11.19	MIT OR Apache-2.0	https://github.com/serde-rs/bytes
+dependency	serde_core	1.0.229	MIT OR Apache-2.0	https://github.com/serde-rs/serde
+dependency	serde_derive	1.0.229	MIT OR Apache-2.0	https://github.com/serde-rs/serde
+dependency	serde_derive_internals	0.30.0	MIT OR Apache-2.0	https://github.com/serde-rs/serde
+dependency	serde_json	1.0.154	MIT OR Apache-2.0	https://github.com/serde-rs/json
+dependency	serde_path_to_error	0.1.20	MIT OR Apache-2.0	https://github.com/dtolnay/path-to-error
+dependency	serde_repr	0.1.21	MIT OR Apache-2.0	https://github.com/dtolnay/serde-repr
+dependency	serde_spanned	0.6.9	MIT OR Apache-2.0	https://github.com/toml-rs/toml
+dependency	serde_spanned	1.1.3	MIT OR Apache-2.0	https://github.com/toml-rs/toml
+dependency	serde_urlencoded	0.7.1	MIT/Apache-2.0	https://github.com/nox/serde_urlencoded
+dependency	sha1	0.10.7	MIT OR Apache-2.0	https://github.com/RustCrypto/hashes
+dependency	sha1_smol	1.0.1	BSD-3-Clause	https://github.com/mitsuhiko/sha1-smol
+dependency	sha2	0.10.9	MIT OR Apache-2.0	https://github.com/RustCrypto/hashes
+dependency	sha2	0.11.1	MIT OR Apache-2.0	https://github.com/RustCrypto/hashes
+dependency	sharded-slab	0.1.7	MIT	https://github.com/hawkw/sharded-slab
+dependency	shellexpand	3.1.2	MIT/Apache-2.0	https://gitlab.com/ijackson/rust-shellexpand
+dependency	shlex	2.0.1	MIT OR Apache-2.0	https://github.com/comex/rust-shlex
+dependency	signal-hook-registry	1.4.8	MIT OR Apache-2.0	https://github.com/vorner/signal-hook
+dependency	simd-adler32	0.3.10	MIT	https://github.com/mcountryman/simd-adler32
+dependency	simd_helpers	0.1.0	MIT	https://github.com/lu-zero/simd_helpers
+dependency	simdutf8	0.1.5	MIT OR Apache-2.0	https://github.com/rusticstuff/simdutf8
+dependency	similar	2.7.0	Apache-2.0	https://github.com/mitsuhiko/similar
+dependency	simplecss	0.2.2	Apache-2.0 OR MIT	https://github.com/linebender/simplecss
+dependency	siphasher	1.0.4	MIT OR Apache-2.0	https://github.com/jedisct1/rust-siphash
+dependency	skrifa	0.40.0	MIT OR Apache-2.0	https://github.com/googlefonts/fontations
+dependency	skrifa	0.44.0	MIT OR Apache-2.0	https://github.com/googlefonts/fontations
+dependency	slab	0.4.12	MIT	https://github.com/tokio-rs/slab
+dependency	slotmap	1.1.1	Zlib	https://github.com/orlp/slotmap
+dependency	smallvec	1.16.6	MIT OR Apache-2.0	https://github.com/smallvec/smallvec
+dependency	smol	2.0.2	Apache-2.0 OR MIT	https://github.com/smol-rs/smol
+dependency	smol_str	0.3.7	MIT OR Apache-2.0	https://github.com/rust-lang/rust-analyzer/tree/master/lib/smol_str
+dependency	socket2	0.5.10	MIT OR Apache-2.0	https://github.com/rust-lang/socket2
+dependency	socket2	0.6.5	MIT OR Apache-2.0	https://github.com/rust-lang/socket2
+dependency	spin	0.10.1	MIT	https://github.com/mvdnes/spin-rs.git
+dependency	spin	0.9.9	MIT	https://github.com/mvdnes/spin-rs.git
+dependency	spirv	0.4.0+sdk-1.4.341.0	Apache-2.0	https://github.com/gfx-rs/rspirv
+dependency	sqlformat	0.2.6	MIT OR Apache-2.0	https://github.com/shssoichiro/sqlformat-rs
+dependency	stable_deref_trait	1.2.1	MIT OR Apache-2.0	https://github.com/storyyeller/stable_deref_trait
+dependency	static_assertions	1.1.0	MIT OR Apache-2.0	https://github.com/nvzqz/static-assertions-rs
+dependency	str_indices	0.4.4	MIT OR Apache-2.0	https://github.com/cessen/str_indices
+dependency	strict-num	0.1.1	MIT	https://github.com/RazrFalcon/strict-num
+dependency	string_cache	0.8.9	MIT OR Apache-2.0	https://github.com/servo/string-cache
+dependency	string_cache_codegen	0.5.4	MIT OR Apache-2.0	https://github.com/servo/string-cache
+dependency	stringprep	0.1.5	MIT/Apache-2.0	https://github.com/sfackler/rust-stringprep
+dependency	strsim	0.11.1	MIT	https://github.com/rapidfuzz/strsim-rs
+dependency	strum	0.28.0	MIT	https://github.com/Peternator7/strum
+dependency	strum_macros	0.28.0	MIT	https://github.com/Peternator7/strum
+dependency	subprocess	0.2.15	Apache-2.0/MIT	https://github.com/hniksic/rust-subprocess
+dependency	subtle	2.6.1	BSD-3-Clause	https://github.com/dalek-cryptography/subtle
+dependency	svg_fmt	0.4.5	MIT/Apache-2.0	https://github.com/nical/rust_debug
+dependency	svgtypes	0.15.3	Apache-2.0 OR MIT	https://github.com/linebender/svgtypes
+dependency	svgtypes	0.16.2	Apache-2.0 OR MIT	https://github.com/linebender/svgtypes
+dependency	swash	0.2.10	Apache-2.0 OR MIT	https://github.com/dfrg/swash
+dependency	syn	2.0.119	MIT OR Apache-2.0	https://github.com/dtolnay/syn
+dependency	syn	3.0.10	MIT OR Apache-2.0	https://github.com/dtolnay/syn
+dependency	sync_wrapper	1.0.2	Apache-2.0	https://github.com/Actyx/sync_wrapper
+dependency	synstructure	0.14.0	MIT	https://github.com/mystor/synstructure
+dependency	sys-locale	0.3.2	MIT OR Apache-2.0	https://github.com/1Password/sys-locale
+dependency	sysinfo	0.31.4	MIT	https://github.com/GuillaumeGomez/sysinfo
+dependency	system-configuration	0.6.1	MIT OR Apache-2.0	https://github.com/mullvad/system-configuration-rs
+dependency	system-configuration-sys	0.6.0	MIT OR Apache-2.0	https://github.com/mullvad/system-configuration-rs
+dependency	taffy	0.15.1	MIT	https://github.com/DioxusLabs/taffy
+dependency	tao-core-video-sys	0.2.0	MIT	-
+dependency	target-features	0.1.6	MIT OR Apache-2.0	https://github.com/calebzulawski/target-features
+dependency	tauri-winrt-notification	0.8.1	MIT OR Apache-2.0	https://github.com/tauri-apps/winrt-notification
+dependency	tempfile	3.27.0	MIT OR Apache-2.0	https://github.com/Stebalien/tempfile
+dependency	tendril	0.4.3	MIT/Apache-2.0	https://github.com/servo/tendril
+dependency	termcolor	1.4.1	Unlicense OR MIT	https://github.com/BurntSushi/termcolor
+dependency	thiserror	1.0.69	MIT OR Apache-2.0	https://github.com/dtolnay/thiserror
+dependency	thiserror	2.0.21	MIT OR Apache-2.0	https://github.com/dtolnay/thiserror
+dependency	thiserror-impl	1.0.69	MIT OR Apache-2.0	https://github.com/dtolnay/thiserror
+dependency	thiserror-impl	2.0.21	MIT OR Apache-2.0	https://github.com/dtolnay/thiserror
+dependency	thread_local	1.1.10	MIT OR Apache-2.0	https://github.com/Amanieu/thread_local-rs
+dependency	tiff	0.11.3	MIT	https://github.com/image-rs/image-tiff
+dependency	time	0.3.55	MIT OR Apache-2.0	https://github.com/time-rs/time
+dependency	time-core	0.1.9	MIT OR Apache-2.0	https://github.com/time-rs/time
+dependency	time-macros	0.2.32	MIT OR Apache-2.0	https://github.com/time-rs/time
+dependency	tiny-keccak	2.0.2	CC0-1.0	-
+dependency	tiny-skia	0.11.4	BSD-3-Clause	https://github.com/RazrFalcon/tiny-skia
+dependency	tiny-skia-path	0.11.4	BSD-3-Clause	https://github.com/RazrFalcon/tiny-skia/tree/master/path
+dependency	tinystr	0.8.5	Unicode-3.0	https://github.com/unicode-org/icu4x
+dependency	tinyvec	1.13.3	Zlib OR Apache-2.0 OR MIT	https://github.com/Lokathor/tinyvec
+dependency	tokio	1.54.1	MIT	https://github.com/tokio-rs/tokio
+dependency	tokio-macros	2.7.2	MIT	https://github.com/tokio-rs/tokio
+dependency	tokio-postgres	0.7.18	MIT OR Apache-2.0	https://github.com/rust-postgres/rust-postgres
+dependency	tokio-rustls	0.26.6	MIT OR Apache-2.0	https://github.com/rustls/tokio-rustls
+dependency	tokio-socks	0.5.3	MIT	https://github.com/sticnarf/tokio-socks
+dependency	tokio-util	0.7.20	MIT	https://github.com/tokio-rs/tokio
+dependency	toml	0.8.23	MIT OR Apache-2.0	https://github.com/toml-rs/toml
+dependency	toml	1.2.1+spec-1.1.0	MIT OR Apache-2.0	https://github.com/toml-rs/toml
+dependency	toml_datetime	0.6.11	MIT OR Apache-2.0	https://github.com/toml-rs/toml
+dependency	toml_datetime	1.1.3+spec-1.1.0	MIT OR Apache-2.0	https://github.com/toml-rs/toml
+dependency	toml_edit	0.22.27	MIT OR Apache-2.0	https://github.com/toml-rs/toml
+dependency	toml_edit	0.25.19+spec-1.1.0	MIT OR Apache-2.0	https://github.com/toml-rs/toml
+dependency	toml_parser	1.1.5+spec-1.1.0	MIT OR Apache-2.0	https://github.com/toml-rs/toml
+dependency	toml_write	0.1.2	MIT OR Apache-2.0	https://github.com/toml-rs/toml
+dependency	toml_writer	1.2.0+spec-1.1.0	MIT OR Apache-2.0	https://github.com/toml-rs/toml
+dependency	tower	0.5.3	MIT	https://github.com/tower-rs/tower
+dependency	tower-http	0.6.11	MIT	https://github.com/tower-rs/tower-http
+dependency	tower-layer	0.3.3	MIT	https://github.com/tower-rs/tower
+dependency	tower-service	0.3.3	MIT	https://github.com/tower-rs/tower
+dependency	tracing	0.1.44	MIT	https://github.com/tokio-rs/tracing
+dependency	tracing-attributes	0.1.31	MIT	https://github.com/tokio-rs/tracing
+dependency	tracing-core	0.1.36	MIT	https://github.com/tokio-rs/tracing
+dependency	tracing-log	0.2.0	MIT	https://github.com/tokio-rs/tracing
+dependency	tracing-subscriber	0.3.23	MIT	https://github.com/tokio-rs/tracing
+dependency	triomphe	0.1.17	MIT OR Apache-2.0	https://github.com/Manishearth/triomphe
+dependency	try-lock	0.2.5	MIT	https://github.com/seanmonstar/try-lock
+dependency	ttf-parser	0.25.1	MIT OR Apache-2.0	https://github.com/harfbuzz/ttf-parser
+dependency	twox-hash	1.6.3	MIT	https://github.com/shepmaster/twox-hash
+dependency	typenum	1.20.1	MIT OR Apache-2.0	https://github.com/paholg/typenum
+dependency	uds_windows	1.2.1	MIT	https://github.com/haraldh/rust_uds_windows
+dependency	unicase	2.10.0	MIT OR Apache-2.0	https://github.com/seanmonstar/unicase
+dependency	unicode-bidi	0.3.18	MIT OR Apache-2.0	https://github.com/servo/unicode-bidi
+dependency	unicode-bidi-mirroring	0.4.0	MIT/Apache-2.0	https://github.com/RazrFalcon/unicode-bidi-mirroring
+dependency	unicode-ccc	0.4.0	MIT/Apache-2.0	https://github.com/RazrFalcon/unicode-ccc
+dependency	unicode-id	0.3.7	MIT OR Apache-2.0	https://github.com/Boshen/unicode-id
+dependency	unicode-ident	1.0.27	(MIT OR Apache-2.0) AND Unicode-3.0	https://github.com/dtolnay/unicode-ident
+dependency	unicode-linebreak	0.1.5	Apache-2.0	https://github.com/axelf4/unicode-linebreak
+dependency	unicode-normalization	0.1.26	(MIT OR Apache-2.0) AND Unicode-3.0	https://github.com/unicode-rs/unicode-normalization
+dependency	unicode-properties	0.1.5	(MIT OR Apache-2.0) AND Unicode-3.0	https://github.com/unicode-rs/unicode-properties
+dependency	unicode-script	0.5.9	MIT OR Apache-2.0	https://github.com/unicode-rs/unicode-script
+dependency	unicode-segmentation	1.13.3	MIT OR Apache-2.0	https://github.com/unicode-rs/unicode-segmentation
+dependency	unicode-vo	0.1.0	MIT/Apache-2.0	https://github.com/RazrFalcon/unicode-vo
+dependency	unicode-width	0.2.3	MIT OR Apache-2.0	https://github.com/unicode-rs/unicode-width
+dependency	unicode_categories	0.1.1	MIT OR Apache-2.0	https://github.com/swgillespie/unicode-categories
+dependency	untrusted	0.9.0	ISC	https://github.com/briansmith/untrusted
+dependency	url	2.5.8	MIT OR Apache-2.0	https://github.com/servo/rust-url
+dependency	usvg	0.45.1	Apache-2.0 OR MIT	https://github.com/linebender/resvg
+dependency	usvg	0.46.0	Apache-2.0 OR MIT	https://github.com/linebender/resvg
+dependency	utf-8	0.7.6	MIT OR Apache-2.0	https://github.com/SimonSapin/rust-utf8
+dependency	utf8_iter	1.1.0	Apache-2.0 OR MIT	https://github.com/hsivonen/utf8_iter
+dependency	utf8parse	0.2.2	Apache-2.0 OR MIT	https://github.com/alacritty/vte
+dependency	utf_types	1.0.0	Apache-2.0 OR MIT	https://github.com/hsivonen/utf_types
+dependency	uuid	1.29.3	Apache-2.0 OR MIT	https://github.com/uuid-rs/uuid
+dependency	v_frame	0.3.9	BSD-2-Clause	https://github.com/rust-av/v_frame
+dependency	valuable	0.1.1	MIT	https://github.com/tokio-rs/valuable
+dependency	vcpkg	0.2.15	MIT/Apache-2.0	https://github.com/mcgoo/vcpkg-rs
+dependency	version_check	0.9.5	MIT/Apache-2.0	https://github.com/SergioBenitez/version_check
+dependency	vswhom	0.1.0	MIT	https://github.com/nabijaczleweli/vswhom.rs
+dependency	vswhom-sys	0.1.3	MIT	https://github.com/nabijaczleweli/vswhom-sys.rs
+dependency	waker-fn	1.2.0	Apache-2.0 OR MIT	https://github.com/smol-rs/waker-fn
+dependency	walkdir	2.5.0	Unlicense/MIT	https://github.com/BurntSushi/walkdir
+dependency	want	0.3.2	MIT	https://github.com/seanmonstar/want
+dependency	wasi	0.11.1+wasi-snapshot-preview1	Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT	https://github.com/bytecodealliance/wasi
+dependency	wasi	0.14.7+wasi-0.2.4	Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT	https://github.com/bytecodealliance/wasi-rs
+dependency	wasip2	1.0.4+wasi-0.2.12	Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT	https://github.com/bytecodealliance/wasi-rs
+dependency	wasite	1.0.2	Apache-2.0 OR BSL-1.0 OR MIT	https://github.com/ardaku/wasite
+dependency	wasm-bindgen	0.2.130	MIT OR Apache-2.0	https://github.com/wasm-bindgen/wasm-bindgen
+dependency	wasm-bindgen-futures	0.4.80	MIT OR Apache-2.0	https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/futures
+dependency	wasm-bindgen-macro	0.2.130	MIT OR Apache-2.0	https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/macro
+dependency	wasm-bindgen-macro-support	0.2.130	MIT OR Apache-2.0	https://github.com/wasm-bindgen/wasm-bindgen/tree/main/crates/macro-support
+dependency	wasm-bindgen-shared	0.2.130	MIT OR Apache-2.0	https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/shared
+dependency	wasm-streams	0.4.2	MIT OR Apache-2.0	https://github.com/MattiasBuelens/wasm-streams/
+dependency	wasm_thread	0.3.3	Apache-2.0 OR MIT	https://github.com/chemicstry/wasm_thread
+dependency	wayland-backend	0.3.17	MIT	https://github.com/smithay/wayland-rs
+dependency	wayland-client	0.31.15	MIT	https://github.com/smithay/wayland-rs
+dependency	wayland-cursor	0.31.14	MIT	https://github.com/smithay/wayland-rs
+dependency	wayland-protocols	0.32.13	MIT	https://github.com/smithay/wayland-rs
+dependency	wayland-protocols-plasma	0.3.12	MIT	https://github.com/smithay/wayland-rs
+dependency	wayland-protocols-wlr	0.3.12	MIT	https://github.com/smithay/wayland-rs
+dependency	wayland-scanner	0.31.11	MIT	https://github.com/smithay/wayland-rs
+dependency	wayland-sys	0.31.11	MIT	https://github.com/smithay/wayland-rs
+dependency	web-sys	0.3.107	MIT OR Apache-2.0	https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/web-sys
+dependency	web-time	1.1.0	MIT OR Apache-2.0	https://github.com/daxpedda/web-time
+dependency	webpki	0.22.4	license-file:LICENSE	https://github.com/briansmith/webpki
+dependency	webpki-roots	0.26.11	CDLA-Permissive-2.0	https://github.com/rustls/webpki-roots
+dependency	webpki-roots	1.0.12	CDLA-Permissive-2.0	https://github.com/rustls/webpki-roots
+dependency	weezl	0.1.12	MIT OR Apache-2.0	https://github.com/image-rs/weezl
+dependency	wgpu	30.0.2	MIT OR Apache-2.0	https://github.com/gfx-rs/wgpu
+dependency	wgpu-core	30.0.2	MIT OR Apache-2.0	https://github.com/gfx-rs/wgpu
+dependency	wgpu-core-deps-apple	30.0.2	MIT OR Apache-2.0	https://github.com/gfx-rs/wgpu
+dependency	wgpu-core-deps-emscripten	30.0.2	MIT OR Apache-2.0	https://github.com/gfx-rs/wgpu
+dependency	wgpu-core-deps-wasm	30.0.2	MIT OR Apache-2.0	https://github.com/gfx-rs/wgpu
+dependency	wgpu-core-deps-windows-linux-android	30.0.2	MIT OR Apache-2.0	https://github.com/gfx-rs/wgpu
+dependency	wgpu-hal	30.0.2	MIT OR Apache-2.0	https://github.com/gfx-rs/wgpu
+dependency	wgpu-naga-bridge	30.0.2	MIT OR Apache-2.0	https://github.com/gfx-rs/wgpu
+dependency	wgpu-types	30.0.2	MIT OR Apache-2.0	https://github.com/gfx-rs/wgpu
+dependency	which	8.0.6	MIT	https://github.com/harryfei/which-rs.git
+dependency	whoami	2.1.3	Apache-2.0 OR BSL-1.0 OR MIT	https://github.com/ardaku/whoami
+dependency	winapi	0.3.9	MIT/Apache-2.0	https://github.com/retep998/winapi-rs
+dependency	winapi-i686-pc-windows-gnu	0.4.0	MIT/Apache-2.0	https://github.com/retep998/winapi-rs
+dependency	winapi-util	0.1.11	Unlicense OR MIT	https://github.com/BurntSushi/winapi-util
+dependency	winapi-x86_64-pc-windows-gnu	0.4.0	MIT/Apache-2.0	https://github.com/retep998/winapi-rs
+dependency	windows	0.57.0	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows	0.58.0	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows	0.61.3	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows	0.62.2	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows-capture	1.5.0	MIT	https://github.com/NiiightmareXD/windows-capture
+dependency	windows-collections	0.2.0	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows-collections	0.3.2	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows-core	0.57.0	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows-core	0.58.0	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows-core	0.61.2	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows-core	0.62.2	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows-future	0.2.1	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows-future	0.3.2	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows-implement	0.57.0	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows-implement	0.58.0	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows-implement	0.60.2	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows-interface	0.57.0	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows-interface	0.58.0	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows-interface	0.59.3	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows-link	0.1.3	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows-link	0.2.1	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows-numerics	0.2.0	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows-numerics	0.3.1	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows-registry	0.4.0	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows-registry	0.6.1	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows-result	0.1.2	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows-result	0.2.0	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows-result	0.3.4	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows-result	0.4.1	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows-strings	0.1.0	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows-strings	0.3.1	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows-strings	0.4.2	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows-strings	0.5.1	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows-sys	0.48.0	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows-sys	0.52.0	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows-sys	0.61.2	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows-targets	0.48.5	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows-targets	0.52.6	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows-targets	0.53.5	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows-threading	0.1.0	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows-threading	0.2.1	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows-version	0.1.7	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows_aarch64_gnullvm	0.48.5	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows_aarch64_gnullvm	0.52.6	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows_aarch64_gnullvm	0.53.1	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows_aarch64_msvc	0.48.5	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows_aarch64_msvc	0.52.6	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows_aarch64_msvc	0.53.1	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows_i686_gnu	0.48.5	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows_i686_gnu	0.52.6	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows_i686_gnu	0.53.1	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows_i686_gnullvm	0.52.6	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows_i686_gnullvm	0.53.1	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows_i686_msvc	0.48.5	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows_i686_msvc	0.52.6	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows_i686_msvc	0.53.1	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows_x86_64_gnu	0.48.5	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows_x86_64_gnu	0.52.6	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows_x86_64_gnu	0.53.1	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows_x86_64_gnullvm	0.48.5	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows_x86_64_gnullvm	0.52.6	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows_x86_64_gnullvm	0.53.1	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows_x86_64_msvc	0.48.5	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows_x86_64_msvc	0.52.6	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	windows_x86_64_msvc	0.53.1	MIT OR Apache-2.0	https://github.com/microsoft/windows-rs
+dependency	winnow	0.7.15	MIT	https://github.com/winnow-rs/winnow
+dependency	winnow	1.0.5	MIT	https://github.com/winnow-rs/winnow
+dependency	winreg	0.56.0	MIT	https://github.com/gentoo90/winreg-rs
+dependency	wio	0.2.2	MIT/Apache-2.0	https://github.com/retep998/wio-rs
+dependency	wit-bindgen	0.57.1	Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT	https://github.com/bytecodealliance/wit-bindgen
+dependency	writeable	0.6.4	Unicode-3.0	https://github.com/unicode-org/icu4x
+dependency	x11	2.21.0	MIT	https://github.com/AltF02/x11-rs.git
+dependency	x11rb	0.13.2	MIT OR Apache-2.0	https://github.com/psychon/x11rb
+dependency	x11rb-protocol	0.13.2	MIT OR Apache-2.0	https://github.com/psychon/x11rb
+dependency	xcb	1.7.1	MIT	https://github.com/rust-x-bindings/rust-xcb
+dependency	xcursor	0.3.11	MIT	https://github.com/esposm03/xcursor-rs
+dependency	xim-ctext	0.3.0	MIT	https://github.com/Riey/xim-rs
+dependency	xim-parser	0.2.2	MIT	https://github.com/Riey/xim-rs
+dependency	xkbcommon	0.8.0	MIT	https://github.com/rust-x-bindings/xkbcommon-rs
+dependency	xkeysym	0.2.1	MIT OR Apache-2.0 OR Zlib	https://github.com/notgull/xkeysym
+dependency	xml-rs	0.8.29	MIT	https://github.com/kornelski/xml-rs
+dependency	xml5ever	0.18.1	MIT OR Apache-2.0	https://github.com/servo/html5ever
+dependency	xmlwriter	0.1.0	MIT	https://github.com/RazrFalcon/xmlwriter
+dependency	y4m	0.8.0	MIT	https://github.com/image-rs/y4m.git
+dependency	yazi	0.2.2	Apache-2.0 OR MIT	https://github.com/dfrg/yazi
+dependency	yeslogic-fontconfig-sys	6.0.1	MIT	https://github.com/yeslogic/fontconfig-rs
+dependency	yoke	0.8.4	Unicode-3.0	https://github.com/unicode-org/icu4x
+dependency	yoke-derive	0.8.4	Unicode-3.0	https://github.com/unicode-org/icu4x
+dependency	zbus	5.19.0	MIT	https://github.com/z-galaxy/zbus/
+dependency	zbus	6.3.0	MIT	https://github.com/z-galaxy/zbus/
+dependency	zbus-lockstep	0.5.2	MIT	https://github.com/luukvanderduim/zbus-lockstep
+dependency	zbus-lockstep-macros	0.5.2	MIT	https://github.com/luukvanderduim/zbus-lockstep
+dependency	zbus_macros	5.19.0	MIT	https://github.com/z-galaxy/zbus/
+dependency	zbus_macros	6.3.0	MIT	https://github.com/z-galaxy/zbus/
+dependency	zbus_names	4.3.5	MIT	https://github.com/z-galaxy/zbus/
+dependency	zbus_utils	6.1.0	MIT	https://github.com/z-galaxy/zbus/
+dependency	zbus_xml	5.2.1	MIT	https://github.com/z-galaxy/zbus/
+dependency	zcheapstr	1.2.0	MIT	https://github.com/z-galaxy/zcheapstr/
+dependency	zed-font-kit	0.14.1-zed	MIT OR Apache-2.0	https://github.com/servo/font-kit
+dependency	zed-scap	0.0.8-zed	MIT	https://github.com/helmerapp/scap
+dependency	zed-xim	0.4.0-zed	MIT	https://github.com/Riey/xim-rs
+dependency	zeno	0.3.3	Apache-2.0 OR MIT	https://github.com/dfrg/zeno
+dependency	zerocopy	0.8.63	BSD-2-Clause OR Apache-2.0 OR MIT	https://github.com/google/zerocopy
+dependency	zerocopy-derive	0.8.63	BSD-2-Clause OR Apache-2.0 OR MIT	https://github.com/google/zerocopy
+dependency	zerofrom	0.1.8	Unicode-3.0	https://github.com/unicode-org/icu4x
+dependency	zerofrom-derive	0.1.8	Unicode-3.0	https://github.com/unicode-org/icu4x
+dependency	zeroize	1.9.2	Apache-2.0 OR MIT	https://github.com/RustCrypto/utils
+dependency	zeroize_derive	1.5.0	Apache-2.0 OR MIT	https://github.com/RustCrypto/utils
+dependency	zerotrie	0.2.5	Unicode-3.0	https://github.com/unicode-org/icu4x
+dependency	zerovec	0.11.9	Unicode-3.0	https://github.com/unicode-org/icu4x
+dependency	zerovec-derive	0.11.7	Unicode-3.0	https://github.com/unicode-org/icu4x
+dependency	zlib-rs	0.6.8	Zlib	https://github.com/trifectatechfoundation/zlib-rs
+dependency	zmij	1.0.23	MIT	https://github.com/dtolnay/zmij
+dependency	zruntime	0.2.3	MIT	https://github.com/z-galaxy/zruntime
+dependency	zstd	0.13.5	BSD-3-Clause	https://github.com/gyscos/zstd-rs
+dependency	zstd-safe	7.4.1	BSD-3-Clause	https://github.com/gyscos/zstd-rs
+dependency	zstd-sys	2.1.3+zstd.1.5.7	BSD-3-Clause AND BSD-2-Clause	https://github.com/gyscos/zstd-rs
+dependency	zune-core	0.4.12	MIT OR Apache-2.0 OR Zlib	-
+dependency	zune-core	0.5.3	MIT OR Apache-2.0 OR Zlib	https://github.com/etemesi254/zune-image
+dependency	zune-inflate	0.2.54	MIT OR Apache-2.0 OR Zlib	-
+dependency	zune-jpeg	0.4.21	MIT OR Apache-2.0 OR Zlib	https://github.com/etemesi254/zune-image/tree/dev/crates/zune-jpeg
+dependency	zune-jpeg	0.5.15	MIT OR Apache-2.0 OR Zlib	https://github.com/etemesi254/zune-image/tree/dev/crates/zune-jpeg
+dependency	zvariant	5.15.1	MIT	https://github.com/z-galaxy/zbus/
+dependency	zvariant_derive	5.15.1	MIT	https://github.com/z-galaxy/zbus/
+dependency	zvariant_utils	4.2.0	MIT	https://github.com/z-galaxy/zbus/
+# package_count=902

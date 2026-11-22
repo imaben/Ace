@@ -1,0 +1,38 @@
+name: Feature request
+description: Suggest an enhancement or missing Sequel Ace workflow
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What is difficult or missing today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Describe the behavior you would like, without assuming a particular implementation.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives you considered
+  - type: dropdown
+    id: engine
+    attributes:
+      label: Database engine (if relevant)
+      options:
+        - MySQL / MariaDB
+        - PostgreSQL
+        - SQLite
+        - All / not specific
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I have searched existing issues and FEATURES.md for a similar request.
+          required: true

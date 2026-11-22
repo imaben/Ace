@@ -7,6 +7,7 @@ on:
 
 env:
   CARGO_TERM_COLOR: always
+  RUST_TOOLCHAIN: "1.100.0"
 
 jobs:
   test:
@@ -37,15 +38,36 @@ jobs:
             libvulkan-dev \
             libssl-dev \
             cmake
-      - uses: dtolnay/rust-toolchain@stable
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: ${{ env.RUST_TOOLCHAIN }}
+          components: rustfmt, clippy
       - uses: Swatinem/rust-cache@v2
+      - name: Check formatting
+        # The existing tree is not uniformly rustfmt-clean. Keep this visible
+        # in CI, but do not fail the job until a dedicated formatting pass
+        # is agreed. Format files you touch; do not reformat the whole tree
+        # in unrelated pull requests.
+        run: cargo fmt --all -- --check
+        continue-on-error: true
       - name: Build
         run: cargo build --workspace
       - name: Test
         run: cargo test --workspace --all-features
       - name: Clippy
-        run: cargo clippy --workspace -- -D warnings
-        continue-on-error: true
+        # Deny new warnings, but allow lints already present in the tree so
+        # phase-1 CI can gate quality without a full-repo style cleanup.
+        run: >
+          cargo clippy --workspace --all-targets -- -D warnings
+          -A clippy::field_reassign_with_default
+          -A clippy::too_many_arguments
+          -A clippy::large_enum_variant
+          -A clippy::derivable_impls
+          -A clippy::redundant_closure
+          -A clippy::len_without_is_empty
+          -A clippy::type_complexity
+          -A clippy::if_same_then_else
+          -A clippy::new_without_default
 
   mysql-integration:
     runs-on: ubuntu-latest
@@ -83,7 +105,10 @@ jobs:
             libvulkan-dev \
             libssl-dev \
             cmake
-      - uses: dtolnay/rust-toolchain@stable
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: ${{ env.RUST_TOOLCHAIN }}
+          components: rustfmt, clippy
       - uses: Swatinem/rust-cache@v2
       - run: cargo build -p ace-app
       - name: Smoke query

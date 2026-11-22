@@ -156,9 +156,11 @@ impl VaultOptions {
             }
         }
         match (&self.mount_path, &self.role) {
-            (Some(m), Some(r)) if !m.is_empty() && !r.is_empty() => {
-                Some(format!("{}/creds/{}", m.trim_matches('/'), r.trim_matches('/')))
-            }
+            (Some(m), Some(r)) if !m.is_empty() && !r.is_empty() => Some(format!(
+                "{}/creds/{}",
+                m.trim_matches('/'),
+                r.trim_matches('/')
+            )),
             _ => None,
         }
     }
@@ -266,7 +268,10 @@ impl ConnectionInfo {
     pub fn connection_string(&self) -> String {
         match self.engine {
             EngineKind::Sqlite => {
-                format!("sqlite://{}", self.database.as_deref().unwrap_or(":memory:"))
+                format!(
+                    "sqlite://{}",
+                    self.database.as_deref().unwrap_or(":memory:")
+                )
             }
             _ => {
                 let db = self.database.as_deref().unwrap_or("");
@@ -576,5 +581,89 @@ mod tests {
         assert!(favorite_color_rgb(-1).is_none());
         assert_eq!(favorite_color_rgb(0), Some((228, 116, 102)));
         assert_eq!(favorite_color_count(), 7);
+    }
+
+    #[test]
+    fn parse_postgres_and_mariadb_urls() {
+        let pg = parse_connection_string("postgres://alice@db.example/app").unwrap();
+        assert_eq!(pg.engine, EngineKind::Postgres);
+        assert_eq!(pg.user, "alice");
+        assert_eq!(pg.password, None);
+        assert_eq!(pg.host, "db.example");
+        assert_eq!(pg.port, 5432);
+        assert_eq!(pg.database.as_deref(), Some("app"));
+
+        let pg2 = parse_connection_string("postgresql://alice@db.example:55432/app").unwrap();
+        assert_eq!(pg2.engine, EngineKind::Postgres);
+        assert_eq!(pg2.port, 55432);
+
+        let maria = parse_connection_string("mariadb://bob@127.0.0.1/test").unwrap();
+        assert_eq!(maria.engine, EngineKind::MariaDb);
+        assert_eq!(maria.port, 3306);
+        assert_eq!(maria.user, "bob");
+    }
+
+    #[test]
+    fn parse_rejects_empty_and_unknown_scheme() {
+        assert!(parse_connection_string("").is_err());
+        assert!(parse_connection_string("   ").is_err());
+        assert!(parse_connection_string("oracle://user@host/db").is_err());
+    }
+
+    #[test]
+    fn without_secrets_strips_passwords() {
+        let mut info = parse_connection_string("mysql://alice:test-pass@db.example/app").unwrap();
+        info.ssh = Some(SshOptions {
+            host: "bastion.example".into(),
+            port: 22,
+            user: "jump".into(),
+            password: Some("ssh-test-pass".into()),
+            private_key_path: Some("C:/keys/id_example".into()),
+            passphrase: Some("key-test-pass".into()),
+            use_ssh_config: false,
+            remote_socket_path: None,
+        });
+        let redacted = info.without_secrets();
+        assert_eq!(info.password.as_deref(), Some("test-pass"));
+        assert!(redacted.password.is_none());
+        assert!(redacted.ssh.as_ref().unwrap().password.is_none());
+        assert!(redacted.ssh.as_ref().unwrap().passphrase.is_none());
+        assert_eq!(
+            redacted.ssh.as_ref().unwrap().private_key_path.as_deref(),
+            Some("C:/keys/id_example")
+        );
+    }
+
+    #[test]
+    fn validate_sqlite_and_ssh_requirements() {
+        let mut sqlite = ConnectionInfo::default();
+        sqlite.engine = EngineKind::Sqlite;
+        assert!(validate_connection(&sqlite).is_err());
+        sqlite.database = Some("demo/demo.db".into());
+        assert!(validate_connection(&sqlite).is_ok());
+
+        let mut ssh = ConnectionInfo::default();
+        ssh.method = ConnectionMethod::SshTunnel;
+        ssh.host = "127.0.0.1".into();
+        assert!(validate_connection(&ssh).is_err());
+        ssh.ssh = Some(SshOptions {
+            host: "bastion.example".into(),
+            port: 22,
+            user: "jump".into(),
+            ..SshOptions::default()
+        });
+        assert!(validate_connection(&ssh).is_ok());
+    }
+
+    #[test]
+    fn sanitize_inputs_strips_newlines() {
+        let mut info = ConnectionInfo::default();
+        info.name = "  local\ndb  ".into();
+        info.host = "127.0.0.1\r".into();
+        info.user = " root ".into();
+        info.sanitize_inputs();
+        assert_eq!(info.name, "localdb");
+        assert_eq!(info.host, "127.0.0.1");
+        assert_eq!(info.user, "root");
     }
 }
