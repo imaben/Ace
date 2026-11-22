@@ -1,9 +1,30 @@
+#![cfg_attr(target_os = "windows", windows_subsystem = "windows")]
+
 mod runtime;
 mod shell;
 mod update;
 
 use clap::{Parser, Subcommand};
 use tracing_subscriber::EnvFilter;
+
+#[cfg(target_os = "windows")]
+fn attach_parent_console_if_cli() {
+    // Only attach to an existing parent console when CLI arguments are provided
+    // (e.g. `ace info`, `ace query`, `ace --help`), so launching the GUI never
+    // spawns or attaches a terminal window.
+    let mut args = std::env::args_os().skip(1);
+    if let Some(first) = args.next() {
+        if first != "gui" {
+            const ATTACH_PARENT_PROCESS: u32 = u32::MAX;
+            extern "system" {
+                fn AttachConsole(dw_process_id: u32) -> i32;
+            }
+            unsafe {
+                let _ = AttachConsole(ATTACH_PARENT_PROCESS);
+            }
+        }
+    }
+}
 
 #[derive(Parser, Debug)]
 #[command(name = "ace", version, about = "Ace — cross-platform Sequel Ace remake (GPUI)")]
@@ -45,6 +66,9 @@ enum Commands {
 }
 
 fn main() {
+    #[cfg(target_os = "windows")]
+    attach_parent_console_if_cli();
+
     tracing_subscriber::fmt()
         .with_env_filter(EnvFilter::from_default_env().add_directive("ace=info".parse().unwrap()))
         .init();

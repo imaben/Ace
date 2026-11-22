@@ -35,6 +35,20 @@ impl AceApp {
                     .h_full()
                     .gap(px(4.))
                     .items_center()
+                    .when(!cfg!(target_os = "macos"), |el| {
+                        el.child(
+                            div()
+                                .flex()
+                                .items_center()
+                                .mr(px(4.))
+                                .child(
+                                    img("icons/ace-64.png")
+                                        .size(px(18.))
+                                        .rounded(px(4.))
+                                        .flex_shrink_0(),
+                                ),
+                        )
+                    })
                     .children(self.tabs.iter().enumerate().map(|(idx, tab)| {
                         let is_active = idx == active_idx;
                         let title = tab.title(cx);
@@ -43,6 +57,7 @@ impl AceApp {
 
                         h_flex()
                             .id(SharedString::from(format!("win-tab-{}", tab.id)))
+                            .occlude()
                             .h(px(24.))
                             .max_w(px(220.))
                             .min_w(px(110.))
@@ -117,32 +132,47 @@ impl AceApp {
                             })
                     }))
                     .child(
-                        Button::new("new-win-tab")
-                            .ghost()
-                            .xsmall()
-                            .icon(Icon::new(Lucide::Plus).size(px(12.)))
-                            .tooltip("New Connection Tab (Cmd+T)")
-                            .on_click(cx.listener(|this, _, window, cx| {
-                                this.new_tab(window, cx);
-                            })),
+                        div()
+                            .occlude()
+                            .on_mouse_down(MouseButton::Left, |_, _, cx| {
+                                cx.stop_propagation();
+                            })
+                            .child(
+                                Button::new("new-win-tab")
+                                    .ghost()
+                                    .xsmall()
+                                    .icon(Icon::new(Lucide::Plus).size(px(12.)))
+                                    .tooltip("New Connection Tab (Cmd+T)")
+                                    .on_click(cx.listener(|this, _, window, cx| {
+                                        this.new_tab(window, cx);
+                                    })),
+                            ),
                     )
                     .child(div().flex_1())
                     .child(
-                        Button::new("global-theme-toggle")
-                            .ghost()
-                            .xsmall()
-                            .icon(
-                                Icon::new(if p.is_dark { Lucide::Sun } else { Lucide::Moon })
-                                    .size(px(13.)),
-                            )
-                            .tooltip(if p.is_dark {
-                                "Switch to Light Theme"
-                            } else {
-                                "Switch to Dark Theme"
+                        div()
+                            .occlude()
+                            .mr(px(4.))
+                            .on_mouse_down(MouseButton::Left, |_, _, cx| {
+                                cx.stop_propagation();
                             })
-                            .on_click(cx.listener(|this, _, window, cx| {
-                                this.toggle_theme(window, cx);
-                            })),
+                            .child(
+                                Button::new("global-theme-toggle")
+                                    .ghost()
+                                    .xsmall()
+                                    .icon(
+                                        Icon::new(if p.is_dark { Lucide::Sun } else { Lucide::Moon })
+                                            .size(px(13.)),
+                                    )
+                                    .tooltip(if p.is_dark {
+                                        "Switch to Light Theme"
+                                    } else {
+                                        "Switch to Dark Theme"
+                                    })
+                                    .on_click(cx.listener(|this, _, window, cx| {
+                                        this.toggle_theme(window, cx);
+                                    })),
+                            ),
                     ),
             )
             .into_any_element()

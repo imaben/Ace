@@ -11,5 +11,4 @@ ace-driver = { workspace = true }
 regex = { workspace = true }
 serde = { workspace = true }
 sqlformat = { workspace = true }
-sqlparser = { workspace = true }
 thiserror = { workspace = true }

@@ -34,7 +34,7 @@ use gpui_kit::component::input::{
 };
 use gpui_kit::component::select::{SearchableVec, SelectEvent, SelectState};
 use gpui_kit::component::table::{ColumnSort, TableEvent, TableState};
-use gpui_kit::component::{v_flex, IndexPath, TitleBar};
+use gpui_kit::component::{v_flex, ActiveTheme as _, IndexPath, TitleBar};
 use gpui_kit::prelude::FluentBuilder as _;
 use gpui_kit::*;
 use std::rc::Rc;
@@ -276,7 +276,7 @@ impl AceApp {
     // ─── Theme & Window Tabs ────────────────────────────────────────────────
 
     pub(crate) fn toggle_theme(&mut self, window: &mut Window, cx: &mut Context<Self>) {
-        self.dark_mode = !self.dark_mode;
+        self.dark_mode = !cx.theme().is_dark();
         apply_theme(self.dark_mode, Some(window), cx);
         cx.notify();
     }
@@ -3978,8 +3978,90 @@ impl Render for AceApp {
     }
 }
 
+gpui_kit::assets::icon_assets!(
+    AceLucideAssets,
+    [
+        Activity,
+        Bookmark,
+        Braces,
+        ChevronDown,
+        ChevronLeft,
+        ChevronRight,
+        ChevronsUpDown,
+        CircleAlert,
+        CircleCheck,
+        CirclePlay,
+        CircleX,
+        Clock,
+        Code,
+        Columns3,
+        Copy,
+        Database,
+        Download,
+        Eye,
+        Folder,
+        FolderOpen,
+        FolderPlus,
+        Funnel,
+        Info,
+        Link2,
+        LogOut,
+        Maximize2,
+        Minus,
+        Moon,
+        Pencil,
+        Pin,
+        PinOff,
+        Play,
+        Plus,
+        RefreshCw,
+        RotateCcw,
+        Search,
+        Server,
+        SlidersHorizontal,
+        Sparkles,
+        SquareTerminal,
+        Sun,
+        Table,
+        Table2,
+        Terminal,
+        Trash,
+        Upload,
+        Users,
+        X,
+        Zap,
+    ]
+);
+
+struct AceAssets;
+
+impl AssetSource for AceAssets {
+    fn load(&self, path: &str) -> Result<Option<std::borrow::Cow<'static, [u8]>>> {
+        if path == "icons/ace-64.png" {
+            return Ok(Some(std::borrow::Cow::Borrowed(include_bytes!(
+                "../../../../assets/icons/ace-64.png"
+            ))));
+        }
+        if let Some(data) = AceLucideAssets.load(path)? {
+            return Ok(Some(data));
+        }
+        assets::Assets.load(path)
+    }
+
+    fn list(&self, path: &str) -> Result<Vec<SharedString>> {
+        let mut items = AceLucideAssets.list(path)?;
+        if let Ok(mut defaults) = assets::Assets.list(path) {
+            items.append(&mut defaults);
+        }
+        if "icons/ace-64.png".starts_with(path) {
+            items.push("icons/ace-64.png".into());
+        }
+        Ok(items)
+    }
+}
+
 pub fn run_gui() {
-    application().with_assets(assets::AllAssets).run(|cx| {
+    application().with_assets(AceAssets).run(|cx| {
         init(cx);
         cx.bind_keys([
             KeyBinding::new("cmd-1", TabStructure, Some("AceApp")),
@@ -3999,6 +4081,9 @@ pub fn run_gui() {
         ]);
 
         let mut opts = TitleBar::window_options();
+        if let Some(tb) = opts.titlebar.as_mut() {
+            tb.title = Some("Ace".into());
+        }
         opts.window_bounds = Some(WindowBounds::Windowed(Bounds::centered(
             None,
             size(px(1260.), px(800.)),

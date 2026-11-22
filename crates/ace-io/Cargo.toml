@@ -9,16 +9,12 @@ description = "Import / export and session file formats"
 ace-core = { workspace = true }
 ace-driver = { workspace = true }
 ace-sql = { workspace = true }
-bzip2 = { workspace = true }
 chrono = { workspace = true }
 csv = { workspace = true }
 encoding_rs = { workspace = true }
 flate2 = { workspace = true }
 plist = { workspace = true }
-quick-xml = { workspace = true }
 serde = { workspace = true }
 serde_json = { workspace = true }
 thiserror = { workspace = true }
-tokio = { workspace = true }
-tracing = { workspace = true }
 uuid = { workspace = true }

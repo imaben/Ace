@@ -11,7 +11,6 @@ name = "ace"
 path = "src/main.rs"
 
 [dependencies]
-ace-bundle = { workspace = true }
 ace-core = { workspace = true }
 ace-driver = { workspace = true }
 ace-io = { workspace = true }

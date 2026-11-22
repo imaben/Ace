@@ -4,6 +4,7 @@ product_name = "Ace"
 identifier = "com.ace.app"
 version = "0.1.0"
 description = "Cross-platform database management tool"
+icons = ["assets/icons/ace.ico", "assets/icons/ace.png"]
 binaries = [{ path = "ace", main = true }]
 
 [macos]

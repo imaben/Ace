@@ -115,15 +115,16 @@ pub fn apply_theme(dark: bool, window: Option<&mut Window>, cx: &mut App) {
         ThemeMode::Light
     };
     Theme::change(mode, window, cx);
-    // Crisp macOS-style input & checkbox borders on cards
+    // Crisp macOS-style input & checkbox borders on cards (via Theme::update so gpui-base stays in sync)
     let input_border: Hsla = if dark {
         rgb(0x52525a).into()
     } else {
         rgb(0xc7c7cc).into()
     };
-    let theme = Theme::global_mut(cx);
-    theme.colors.input = input_border;
-    theme.tokens.input = input_border.into();
+    Theme::update(cx, |theme| {
+        theme.colors.input = input_border;
+        theme.tokens.input = input_border.into();
+    });
 }
 
 pub fn favorite_tint(color_index: i32) -> Option<Rgba> {
