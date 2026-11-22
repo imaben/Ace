@@ -1,0 +1,82 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/ace-core",
+    "crates/ace-driver",
+    "crates/ace-mysql",
+    "crates/ace-postgres",
+    "crates/ace-sqlite",
+    "crates/ace-sql",
+    "crates/ace-net",
+    "crates/ace-io",
+    "crates/ace-bundle",
+    "crates/ace-mcp",
+    "crates/ace-store",
+    "crates/ace-ui",
+    "crates/ace-app",
+]
+default-members = ["crates/ace-app"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+authors = ["Ace Contributors"]
+repository = "https://github.com/imaben/Ace"
+rust-version = "1.100"
+
+[workspace.dependencies]
+ace-core = { path = "crates/ace-core" }
+ace-driver = { path = "crates/ace-driver" }
+ace-mysql = { path = "crates/ace-mysql" }
+ace-postgres = { path = "crates/ace-postgres" }
+ace-sqlite = { path = "crates/ace-sqlite" }
+ace-sql = { path = "crates/ace-sql" }
+ace-net = { path = "crates/ace-net" }
+ace-io = { path = "crates/ace-io" }
+ace-bundle = { path = "crates/ace-bundle" }
+ace-mcp = { path = "crates/ace-mcp" }
+ace-store = { path = "crates/ace-store" }
+ace-ui = { path = "crates/ace-ui" }
+
+anyhow = "1"
+async-trait = "0.1"
+base64 = "0.22"
+bytes = "1"
+chrono = { version = "0.4", features = ["serde"] }
+csv = "1"
+directories = "5"
+encoding_rs = "0.8"
+flate2 = "1"
+futures = "0.3"
+indexmap = { version = "2", features = ["serde"] }
+keyring = "3"
+plist = "1"
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls"] }
+rusqlite = { version = "0.32", features = ["bundled"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sqlformat = "0.2"
+sqlparser = "0.52"
+thiserror = "2"
+tokio = { version = "1", features = ["full"] }
+toml = "0.8"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+uuid = { version = "1", features = ["v4", "serde"] }
+bzip2 = "0.5"
+quick-xml = { version = "0.37", features = ["serialize"] }
+axum = "0.8"
+tower-http = { version = "0.6", features = ["cors"] }
+rustls = { version = "0.23", default-features = false, features = ["ring", "std"] }
+rustls-pemfile = "2"
+sha2 = "0.10"
+hex = "0.4"
+regex = "1"
+parking_lot = "0.12"
+dashmap = "6"
+
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true

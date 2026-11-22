@@ -1,0 +1,15 @@
+[package]
+name = "ace-sql"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "SQL parsing, splitting, completion, and formatting"
+
+[dependencies]
+ace-core = { workspace = true }
+ace-driver = { workspace = true }
+regex = { workspace = true }
+serde = { workspace = true }
+sqlformat = { workspace = true }
+sqlparser = { workspace = true }
+thiserror = { workspace = true }

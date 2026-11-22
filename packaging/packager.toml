@@ -1,0 +1,18 @@
+# cargo-packager configuration (phase 8)
+[package]
+product_name = "Ace"
+identifier = "com.ace.app"
+version = "0.1.0"
+description = "Cross-platform database management tool"
+binaries = [{ path = "ace", main = true }]
+
+[macos]
+dmg = true
+signing_identity = ""
+
+[windows]
+nsis = true
+
+[linux]
+appimage = true
+deb = true

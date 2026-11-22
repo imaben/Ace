@@ -1,0 +1,29 @@
+[package]
+name = "ace-ui"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "GPUI desktop UI for Ace (latest gpui-kit)"
+
+[dependencies]
+ace-core = { workspace = true }
+ace-driver = { workspace = true }
+ace-mysql = { workspace = true }
+ace-postgres = { workspace = true }
+ace-sqlite = { workspace = true }
+ace-sql = { workspace = true }
+ace-store = { workspace = true }
+ace-io = { workspace = true }
+ace-net = { workspace = true }
+chrono = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+async-trait = { workspace = true }
+uuid = { workspace = true }
+tokio = { workspace = true }
+tracing = { workspace = true }
+anyhow = { workspace = true }
+parking_lot = { workspace = true }
+# Latest GPUI Kit (bundles GPUI + components + assets)
+gpui-kit = "0.10.0"
+lsp-types = { version = "0.97", features = ["proposed"] }

@@ -1,0 +1,18 @@
+[package]
+name = "ace-postgres"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "PostgreSQL driver for Ace"
+
+[dependencies]
+ace-core = { workspace = true }
+ace-driver = { workspace = true }
+async-trait = { workspace = true }
+chrono = { workspace = true }
+futures = { workspace = true }
+tokio = { workspace = true }
+tokio-postgres = { version = "0.7", features = ["with-chrono-0_4"] }
+tracing = { workspace = true }
+uuid = { workspace = true }
+parking_lot = { workspace = true }

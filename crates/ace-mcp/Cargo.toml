@@ -1,0 +1,21 @@
+[package]
+name = "ace-mcp"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Local MCP HTTP server for AI agents"
+
+[dependencies]
+ace-core = { workspace = true }
+ace-driver = { workspace = true }
+ace-io = { workspace = true }
+ace-sql = { workspace = true }
+axum = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+tokio = { workspace = true }
+tower-http = { workspace = true }
+tracing = { workspace = true }
+uuid = { workspace = true }
+async-trait = { workspace = true }
+parking_lot = { workspace = true }

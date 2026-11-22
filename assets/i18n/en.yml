@@ -1,0 +1,14 @@
+app.name: Ace
+app.connect: Connect
+app.favorites: Favorites
+app.query: Query
+app.structure: Structure
+app.content: Content
+app.relations: Relations
+app.triggers: Triggers
+app.table_info: Table Info
+app.preferences: Preferences
+app.export: Export
+app.import: Import
+error.connection_failed: Connection failed
+error.query_failed: Query failed

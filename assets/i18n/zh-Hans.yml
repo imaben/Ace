@@ -1,0 +1,14 @@
+app.name: Ace
+app.connect: 连接
+app.favorites: 收藏夹
+app.query: 查询
+app.structure: 结构
+app.content: 内容
+app.relations: 关系
+app.triggers: 触发器
+app.table_info: 表信息
+app.preferences: 偏好设置
+app.export: 导出
+app.import: 导入
+error.connection_failed: 连接失败
+error.query_failed: 查询失败
