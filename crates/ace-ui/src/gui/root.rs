@@ -30,7 +30,9 @@ use ace_store::{
     save_favorites, save_password, HistoryEntry, HistoryStore, QueryFavorite,
 };
 use gpui_kit::component::input::{
-    EditorState, InputEvent, InputState, ShowCompletions, TextareaState,
+    Copy as InputCopy, Cut as InputCut, EditorState, InputEvent, InputState, Paste as InputPaste,
+    Redo as InputRedo, SelectAll as InputSelectAll, ShowCompletions, TextareaState,
+    Undo as InputUndo,
 };
 use gpui_kit::component::select::{SearchableVec, SelectEvent, SelectState};
 use gpui_kit::component::table::{ColumnSort, TableEvent, TableState};
@@ -43,6 +45,8 @@ use uuid::Uuid;
 actions!(
     ace_app,
     [
+        Quit,
+        NewWindow,
         TabStructure,
         TabContent,
         TabRelations,
@@ -69,6 +73,19 @@ pub struct AceApp {
     pub(crate) dark_mode: bool,
     focus_handle: FocusHandle,
     _subscriptions: Vec<Subscription>,
+}
+
+impl Drop for AceApp {
+    fn drop(&mut self) {
+        for tab in self.tabs.drain(..) {
+            if let Some(session) = tab.session {
+                let conn = session.conn;
+                tokio_rt().spawn(async move {
+                    let _ = conn.close().await;
+                });
+            }
+        }
+    }
 }
 
 fn new_input(
@@ -3990,8 +4007,12 @@ impl Render for AceApp {
                 this.new_tab(window, cx);
             }))
             .on_action(cx.listener(|this, _: &CloseWindowTab, window, cx| {
-                let idx = this.active_tab;
-                this.close_tab(idx, window, cx);
+                if this.tabs.len() <= 1 {
+                    window.remove_window();
+                } else {
+                    let idx = this.active_tab;
+                    this.close_tab(idx, window, cx);
+                }
             }))
             .on_action(cx.listener(|this, _: &ToggleConsole, _, cx| {
                 this.toggle_console(cx);
@@ -4091,10 +4112,48 @@ impl AssetSource for AceAssets {
     }
 }
 
+fn open_main_window(cx: &mut App) {
+    let mut opts = TitleBar::window_options();
+    if let Some(tb) = opts.titlebar.as_mut() {
+        tb.title = Some("Ace".into());
+    }
+    opts.window_bounds = Some(WindowBounds::Windowed(Bounds::centered(
+        None,
+        size(px(1260.), px(800.)),
+        cx,
+    )));
+    opts.window_min_size = Some(size(px(860.), px(540.)));
+
+    if let Err(err) = open_window(opts, cx, |window, cx| cx.new(|cx| AceApp::new(window, cx))) {
+        tracing::error!("Failed to open Ace window: {err:?}");
+    }
+}
+
 pub fn run_gui() {
-    application().with_assets(AceAssets).run(|cx| {
+    let app = application()
+        .with_assets(AceAssets)
+        .with_quit_mode(QuitMode::LastWindowClosed);
+
+    app.on_reopen(|cx| {
+        if cx.windows().is_empty() {
+            open_main_window(cx);
+        }
+        cx.activate(true);
+    });
+
+    app.run(|cx| {
         init(cx);
+        cx.on_action(|_: &Quit, cx| {
+            cx.quit();
+        });
+        cx.on_action(|_: &NewWindow, cx| {
+            open_main_window(cx);
+            cx.activate(true);
+        });
+
         cx.bind_keys([
+            KeyBinding::new("cmd-q", Quit, None),
+            KeyBinding::new("cmd-n", NewWindow, None),
             KeyBinding::new("cmd-1", TabStructure, Some("AceApp")),
             KeyBinding::new("cmd-2", TabContent, Some("AceApp")),
             KeyBinding::new("cmd-3", TabRelations, Some("AceApp")),
@@ -4111,18 +4170,64 @@ pub fn run_gui() {
             KeyBinding::new("escape", DismissModal, Some("AceApp")),
         ]);
 
-        let mut opts = TitleBar::window_options();
-        if let Some(tb) = opts.titlebar.as_mut() {
-            tb.title = Some("Ace".into());
-        }
-        opts.window_bounds = Some(WindowBounds::Windowed(Bounds::centered(
-            None,
-            size(px(1260.), px(800.)),
-            cx,
-        )));
-        opts.window_min_size = Some(size(px(860.), px(540.)));
+        cx.set_menus(vec![
+            Menu {
+                name: "Ace".into(),
+                items: vec![
+                    MenuItem::os_submenu("Services", SystemMenuType::Services),
+                    MenuItem::separator(),
+                    MenuItem::action("Quit Ace", Quit),
+                ],
+                disabled: false,
+            },
+            Menu {
+                name: "File".into(),
+                items: vec![
+                    MenuItem::action("New Window", NewWindow),
+                    MenuItem::action("New Tab", NewWindowTab),
+                    MenuItem::separator(),
+                    MenuItem::action("Close Tab", CloseWindowTab),
+                ],
+                disabled: false,
+            },
+            Menu {
+                name: "Edit".into(),
+                items: vec![
+                    MenuItem::os_action("Undo", InputUndo, OsAction::Undo),
+                    MenuItem::os_action("Redo", InputRedo, OsAction::Redo),
+                    MenuItem::separator(),
+                    MenuItem::os_action("Cut", InputCut, OsAction::Cut),
+                    MenuItem::os_action("Copy", InputCopy, OsAction::Copy),
+                    MenuItem::os_action("Paste", InputPaste, OsAction::Paste),
+                    MenuItem::os_action("Select All", InputSelectAll, OsAction::SelectAll),
+                ],
+                disabled: false,
+            },
+            Menu {
+                name: "View".into(),
+                items: vec![
+                    MenuItem::action("Structure", TabStructure),
+                    MenuItem::action("Content", TabContent),
+                    MenuItem::action("Relations", TabRelations),
+                    MenuItem::action("Triggers", TabTriggers),
+                    MenuItem::action("Table Info", TabTableInfo),
+                    MenuItem::action("Query", TabQuery),
+                    MenuItem::separator(),
+                    MenuItem::action("Toggle SQL Console", ToggleConsole),
+                ],
+                disabled: false,
+            },
+            Menu {
+                name: "Query".into(),
+                items: vec![
+                    MenuItem::action("Run Current Query", RunQueryCurrent),
+                    MenuItem::action("Run All Queries", RunQueryAll),
+                ],
+                disabled: false,
+            },
+        ]);
 
-        open_window(opts, cx, |window, cx| cx.new(|cx| AceApp::new(window, cx)))
-            .expect("Failed to open Ace window");
+        open_main_window(cx);
+        cx.activate(true);
     });
 }

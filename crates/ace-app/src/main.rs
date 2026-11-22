@@ -73,7 +73,12 @@ fn main() {
         .with_env_filter(EnvFilter::from_default_env().add_directive("ace=info".parse().unwrap()))
         .init();
 
-    let cli = Cli::parse();
+    // macOS LaunchServices may pass a legacy `-psn_...` argument when opening `.app` bundles.
+    let cli_args = std::env::args_os()
+        .enumerate()
+        .filter(|(idx, arg)| *idx == 0 || !arg.to_string_lossy().starts_with("-psn_"))
+        .map(|(_, arg)| arg);
+    let cli = Cli::parse_from(cli_args);
     match cli.command.unwrap_or(Commands::Gui) {
         Commands::Gui => {
             ace_ui::run_gui();
