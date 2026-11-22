@@ -4158,7 +4158,7 @@ pub fn run_gui() {
             cx.activate(true);
         });
 
-        let mut bindings = vec![
+        let bindings = vec![
             mod_binding("cmd-q", "ctrl-q", Quit, None),
             mod_binding("cmd-n", "ctrl-n", NewWindow, None),
             mod_binding("cmd-1", "ctrl-1", TabStructure, Some("AceApp")),
@@ -4188,7 +4188,11 @@ pub fn run_gui() {
             KeyBinding::new("escape", DismissModal, Some("AceApp")),
         ];
         #[cfg(not(target_os = "macos"))]
-        bindings.push(KeyBinding::new("f5", RunQueryCurrent, Some("AceApp")));
+        let bindings = {
+            let mut bindings = bindings;
+            bindings.push(KeyBinding::new("f5", RunQueryCurrent, Some("AceApp")));
+            bindings
+        };
         cx.bind_keys(bindings);
 
         cx.set_menus(vec![
