@@ -1,5 +1,6 @@
 //! Clean Sequel Ace modal overlays & sheets.
 
+use crate::gui::loading::{loading_inline, loading_pane};
 use crate::gui::root::AceApp;
 use crate::gui::state::{ModalState, ServerToolsTab};
 use crate::gui::theme::Palette;
@@ -809,6 +810,9 @@ impl AceApp {
                 v_flex()
                     .gap(px(8.))
                     .child(modal_row("SQL File Path", Input::new(path).small(), p))
+                    .when(*running, |el| {
+                        el.child(div().pl(px(108.)).child(loading_inline("Importing SQL file…", p)))
+                    })
                     .when_some(status.clone(), |el, msg| {
                         el.child(
                             div()
@@ -896,7 +900,10 @@ impl AceApp {
             ModalState::ServerTools {
                 tab,
                 loading,
+                processes,
+                variables,
                 var_filter,
+                users,
                 proc_table,
                 var_table,
                 user_table,
@@ -905,6 +912,9 @@ impl AceApp {
             } => {
                 let active = *tab;
                 let is_loading = *loading;
+                let procs_empty = processes.is_empty();
+                let vars_empty = variables.is_empty();
+                let users_empty = users.is_empty();
                 let server_info = self
                     .active_tab()
                     .session
@@ -960,12 +970,17 @@ impl AceApp {
                                 .border_color(p.border)
                                 .rounded(px(6.))
                                 .overflow_hidden()
-                                .child(
+                                .child(loading_pane(
+                                    "st-proc-loading",
+                                    is_loading,
+                                    procs_empty,
+                                    "Loading processes…",
+                                    p,
                                     DataTable::new(proc_table)
                                         .stripe(true)
                                         .bordered(false)
                                         .small(),
-                                ),
+                                )),
                         )
                         .into_any_element(),
                     ServerToolsTab::Variables => v_flex()
@@ -1019,12 +1034,17 @@ impl AceApp {
                                 .border_color(p.border)
                                 .rounded(px(6.))
                                 .overflow_hidden()
-                                .child(
+                                .child(loading_pane(
+                                    "st-var-loading",
+                                    is_loading,
+                                    vars_empty,
+                                    "Loading variables…",
+                                    p,
                                     DataTable::new(var_table)
                                         .stripe(true)
                                         .bordered(false)
                                         .small(),
-                                ),
+                                )),
                         )
                         .into_any_element(),
                     ServerToolsTab::Users => v_flex()
@@ -1040,12 +1060,17 @@ impl AceApp {
                                 .border_color(p.border)
                                 .rounded(px(6.))
                                 .overflow_hidden()
-                                .child(
+                                .child(loading_pane(
+                                    "st-users-loading",
+                                    is_loading,
+                                    users_empty,
+                                    "Loading users…",
+                                    p,
                                     DataTable::new(user_table)
                                         .stripe(true)
                                         .bordered(false)
                                         .small(),
-                                ),
+                                )),
                         )
                         .into_any_element(),
                     ServerToolsTab::ServerInfo => v_flex()

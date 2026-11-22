@@ -13,8 +13,8 @@ use crate::gui::sql_complete::{ColumnHint, SchemaCatalog, SqlCompletionProvider}
 use crate::gui::sql_highlight::sql_highlighter_factory;
 use crate::gui::state::{
     filter_op_by_label, sorted_variables, ConfirmAction, ConnectionDraft, ConnectionFormInputs,
-    ModalState, QueryDrawerTab, ServerToolsTab, WorkspaceSession, WorkspaceTab, DEFAULT_PAGE_SIZE,
-    FILTER_OPS,
+    LoadingScope, LoadingTracker, ModalState, QueryDrawerTab, ServerToolsTab, WorkspaceSession,
+    WorkspaceTab, DEFAULT_PAGE_SIZE, FILTER_OPS,
 };
 use crate::gui::theme::{apply_theme, Palette};
 use crate::views::MainViewTab;
@@ -1364,7 +1364,8 @@ impl AceApp {
             query_drawer: QueryDrawerTab::History,
             query_drawer_open: false,
             status: bundle.status,
-            busy: false,
+            loading: LoadingTracker::default(),
+            table_load_seq: 0,
         }
     }
 
@@ -1420,7 +1421,7 @@ impl AceApp {
             return;
         };
         let conn = session.conn.clone();
-        session.busy = true;
+        session.loading.begin(LoadingScope::Objects, format!("Loading `{database}`…"));
         cx.notify();
 
         cx.spawn_in(window, async move |this, cx| {
@@ -1435,7 +1436,7 @@ impl AceApp {
 
             this.update_in(cx, |this, _window, cx| {
                 if let Some(s) = this.session_by_tab_mut(tab_id) {
-                    s.busy = false;
+                    s.loading.end(LoadingScope::Objects);
                     match res {
                         Ok((db, objects)) => {
                             let raw_conn = s.raw_conn.clone();
@@ -1491,7 +1492,7 @@ impl AceApp {
         };
         let conn = session.conn.clone();
         let current_db = session.current_db.clone();
-        session.busy = true;
+        session.loading.begin(LoadingScope::Objects, "Refreshing databases…");
         cx.notify();
 
         cx.spawn_in(window, async move |this, cx| {
@@ -1510,7 +1511,7 @@ impl AceApp {
 
             this.update_in(cx, |this, window, cx| {
                 if let Some(s) = this.session_by_tab_mut(tab_id) {
-                    s.busy = false;
+                    s.loading.end(LoadingScope::Objects);
                     match res {
                         Ok((dbs, objs)) => {
                             let cur = s.current_db.clone();
@@ -1567,7 +1568,7 @@ impl AceApp {
         }
         let conn = session.conn.clone();
         let db = session.current_db.clone();
-        session.busy = true;
+        session.loading.begin(LoadingScope::Objects, "Refreshing tables…");
         cx.notify();
 
         cx.spawn_in(window, async move |this, cx| {
@@ -1577,7 +1578,7 @@ impl AceApp {
                 .unwrap_or_else(|e| Err(ace_core::AceError::Query(e.to_string())));
             this.update_in(cx, |this, _window, cx| {
                 if let Some(s) = this.session_by_tab_mut(tab_id) {
-                    s.busy = false;
+                    s.loading.end(LoadingScope::Objects);
                     match res {
                         Ok(objs) => {
                             let cur = s.current_db.clone();
@@ -1630,7 +1631,14 @@ impl AceApp {
         session.selected_index_row = None;
         session.selected_relation_row = None;
         session.selected_trigger_row = None;
-        session.busy = true;
+        session.table_load_seq = session.table_load_seq.wrapping_add(1);
+        let seq = session.table_load_seq;
+        session
+            .loading
+            .begin(LoadingScope::Structure, format!("Loading `{table}`…"));
+        session
+            .loading
+            .begin(LoadingScope::Content, format!("Loading `{table}`…"));
         let filter_inp = session.content_filter_value.clone();
         set_input_val(&filter_inp, "", window, cx);
         cx.notify();
@@ -1646,6 +1654,20 @@ impl AceApp {
                 .await
                 .unwrap_or_else(|e| Err(ace_core::AceError::Query(e.to_string())));
 
+            // Apply structure immediately as soon as it arrives while rows continue loading.
+            this.update_in(cx, |this, window, cx| {
+                if let Some(s) = this.session_by_tab_mut(tab_id) {
+                    s.loading.end(LoadingScope::Structure);
+                    if s.table_load_seq == seq {
+                        if let Ok((meta, triggers)) = struct_res {
+                            apply_structure_to_session(s, meta, triggers, window, cx);
+                        }
+                    }
+                }
+                cx.notify();
+            })
+            .ok();
+
             let content_res = tokio_rt()
                 .spawn(async move {
                     fetch_table_page(&conn, &db, &tbl_b, page_size, 0, None, None).await
@@ -1655,9 +1677,10 @@ impl AceApp {
 
             this.update_in(cx, |this, window, cx| {
                 if let Some(s) = this.session_by_tab_mut(tab_id) {
-                    s.busy = false;
-                    if let Ok((meta, triggers)) = struct_res {
-                        apply_structure_to_session(s, meta, triggers, window, cx);
+                    s.loading.end(LoadingScope::Content);
+                    if s.table_load_seq != seq {
+                        cx.notify();
+                        return;
                     }
                     match content_res {
                         Ok(page) => {
@@ -1754,7 +1777,8 @@ impl AceApp {
         let where_clause = s.where_clause.clone();
         let sort_col = s.sort_column.clone();
         let sort_desc = s.sort_desc;
-        s.busy = true;
+        let seq = s.table_load_seq;
+        s.loading.begin(LoadingScope::Content, "Loading rows…");
         s.selected_cell = None;
         cx.notify();
 
@@ -1777,7 +1801,11 @@ impl AceApp {
 
             this.update_in(cx, |this, _window, cx| {
                 if let Some(s) = this.session_by_tab_mut(tab_id) {
-                    s.busy = false;
+                    s.loading.end(LoadingScope::Content);
+                    if s.table_load_seq != seq {
+                        cx.notify();
+                        return;
+                    }
                     s.page_offset = offset;
                     match res {
                         Ok(page) => {
@@ -2046,7 +2074,7 @@ impl AceApp {
         let conn = s.conn.clone();
         let offset = s.page_offset;
         if let Some(s) = self.active_tab_mut().session.as_mut() {
-            s.busy = true;
+            s.loading.begin(LoadingScope::Content, "Saving cell…");
         }
         cx.notify();
 
@@ -2058,7 +2086,7 @@ impl AceApp {
 
             this.update_in(cx, |this, window, cx| {
                 if let Some(s) = this.session_by_tab_mut(tab_id) {
-                    s.busy = false;
+                    s.loading.end(LoadingScope::Content);
                     match res {
                         Ok(_) => {
                             s.status = format!("Updated `{col_name}`");
@@ -2337,7 +2365,7 @@ impl AceApp {
         };
         let conn = s.conn.clone();
         let offset = s.page_offset;
-        s.busy = true;
+        s.loading.begin(LoadingScope::Content, "Updating rows…");
         cx.notify();
 
         cx.spawn_in(window, async move |this, cx| {
@@ -2347,7 +2375,7 @@ impl AceApp {
                 .unwrap_or_else(|e| Err(ace_core::AceError::Query(e.to_string())));
             this.update_in(cx, |this, window, cx| {
                 if let Some(s) = this.session_by_tab_mut(tab_id) {
-                    s.busy = false;
+                    s.loading.end(LoadingScope::Content);
                     match res {
                         Ok(_) => {
                             s.status = ok_msg.into();
@@ -2414,7 +2442,7 @@ impl AceApp {
             return;
         };
         let conn = s.conn.clone();
-        s.busy = true;
+        s.loading.begin(LoadingScope::Objects, "Creating database…");
         cx.notify();
 
         cx.spawn_in(window, async move |this, cx| {
@@ -2424,7 +2452,7 @@ impl AceApp {
                 .unwrap_or_else(|e| Err(ace_core::AceError::Query(e.to_string())));
             this.update_in(cx, |this, window, cx| {
                 if let Some(s) = this.session_by_tab_mut(tab_id) {
-                    s.busy = false;
+                    s.loading.end(LoadingScope::Objects);
                     match res {
                         Ok(_) => {
                             s.status = format!("Created database `{db_name}`");
@@ -2471,7 +2499,7 @@ impl AceApp {
         let is_sqlite = s.info.engine == EngineKind::Sqlite;
         let sql = ace_sql::create_table_sql(&s.current_db, &tbl, Some(&eng), Some(&cs), is_sqlite);
         let conn = s.conn.clone();
-        s.busy = true;
+        s.loading.begin(LoadingScope::Objects, "Creating table…");
         cx.notify();
 
         cx.spawn_in(window, async move |this, cx| {
@@ -2481,7 +2509,7 @@ impl AceApp {
                 .unwrap_or_else(|e| Err(ace_core::AceError::Query(e.to_string())));
             this.update_in(cx, |this, window, cx| {
                 if let Some(s) = this.session_by_tab_mut(tab_id) {
-                    s.busy = false;
+                    s.loading.end(LoadingScope::Objects);
                     match res {
                         Ok(_) => {
                             s.status = format!("Created table `{tbl}`");
@@ -2536,7 +2564,7 @@ impl AceApp {
             ace_sql::rename_table_sql(&s.current_db, &old_name, &new_tbl)
         };
         let conn = s.conn.clone();
-        s.busy = true;
+        s.loading.begin(LoadingScope::Objects, "Renaming table…");
         cx.notify();
 
         cx.spawn_in(window, async move |this, cx| {
@@ -2546,7 +2574,7 @@ impl AceApp {
                 .unwrap_or_else(|e| Err(ace_core::AceError::Query(e.to_string())));
             this.update_in(cx, |this, window, cx| {
                 if let Some(s) = this.session_by_tab_mut(tab_id) {
-                    s.busy = false;
+                    s.loading.end(LoadingScope::Objects);
                     match res {
                         Ok(_) => {
                             s.status = format!("Renamed to `{new_tbl}`");
@@ -3021,7 +3049,7 @@ impl AceApp {
             return;
         };
         let conn = s.conn.clone();
-        s.busy = true;
+        s.loading.begin(LoadingScope::Structure, "Applying schema change…");
         cx.notify();
 
         cx.spawn_in(window, async move |this, cx| {
@@ -3031,7 +3059,7 @@ impl AceApp {
                 .unwrap_or_else(|e| Err(ace_core::AceError::Query(e.to_string())));
             this.update_in(cx, |this, window, cx| {
                 if let Some(s) = this.session_by_tab_mut(tab_id) {
-                    s.busy = false;
+                    s.loading.end(LoadingScope::Structure);
                     match res {
                         Ok(_) => {
                             s.status = ok_msg.into();
@@ -3076,7 +3104,8 @@ impl AceApp {
                     return;
                 };
                 let conn = s.conn.clone();
-                s.busy = true;
+                s.loading.begin(LoadingScope::Objects, "Dropping database…");
+                cx.notify();
                 cx.spawn_in(window, async move |this, cx| {
                     let res = tokio_rt()
                         .spawn(async move { exec_single_sql(&conn, &sql).await })
@@ -3084,7 +3113,7 @@ impl AceApp {
                         .unwrap_or_else(|e| Err(ace_core::AceError::Query(e.to_string())));
                     this.update_in(cx, |this, window, cx| {
                         if let Some(s) = this.session_by_tab_mut(tab_id) {
-                            s.busy = false;
+                            s.loading.end(LoadingScope::Objects);
                             match res {
                                 Ok(_) => this.refresh_databases_and_tables(window, cx),
                                 Err(e) => s.status = format!("Drop DB failed: {e}"),
@@ -3104,7 +3133,7 @@ impl AceApp {
                 let is_sqlite = s.info.engine == EngineKind::Sqlite;
                 let sql = ace_sql::drop_table_sql(&s.current_db, &table, is_sqlite);
                 let conn = s.conn.clone();
-                s.busy = true;
+                s.loading.begin(LoadingScope::Objects, "Dropping table…");
                 cx.notify();
 
                 cx.spawn_in(window, async move |this, cx| {
@@ -3114,7 +3143,7 @@ impl AceApp {
                         .unwrap_or_else(|e| Err(ace_core::AceError::Query(e.to_string())));
                     this.update_in(cx, |this, window, cx| {
                         if let Some(s) = this.session_by_tab_mut(tab_id) {
-                            s.busy = false;
+                            s.loading.end(LoadingScope::Objects);
                             match res {
                                 Ok(_) => {
                                     s.selected_table = None;
@@ -3227,7 +3256,7 @@ impl AceApp {
         let session_id = s.info.id.to_string();
         let sql_history = sql_to_run.clone();
         if let Some(s) = self.active_tab_mut().session.as_mut() {
-            s.busy = true;
+            s.loading.begin(LoadingScope::Query, "Running query…");
             s.main_tab = MainViewTab::CustomQuery;
             s.query_error = None;
             s.query_message = "Running…".into();
@@ -3242,7 +3271,7 @@ impl AceApp {
 
             this.update_in(cx, |this, _window, cx| {
                 if let Some(s) = this.session_by_tab_mut(tab_id) {
-                    s.busy = false;
+                    s.loading.end(LoadingScope::Query);
                     match res {
                         Ok(out) => {
                             let ms = out.total_duration_ms;
@@ -4005,6 +4034,8 @@ gpui_kit::assets::icon_assets!(
         Funnel,
         Info,
         Link2,
+        Loader,
+        LoaderCircle,
         LogOut,
         Maximize2,
         Minus,

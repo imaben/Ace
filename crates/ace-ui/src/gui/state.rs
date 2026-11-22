@@ -162,9 +162,95 @@ pub struct WorkspaceSession {
     pub query_drawer: QueryDrawerTab,
     pub query_drawer_open: bool,
 
-    // General status & busy indicator
+    // General status & scoped loading tracker
     pub status: String,
-    pub busy: bool,
+    pub loading: LoadingTracker,
+    pub table_load_seq: u64,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum LoadingScope {
+    Objects,
+    Structure,
+    Content,
+    Query,
+    General,
+}
+
+#[derive(Debug, Default, Clone)]
+pub struct LoadingTracker {
+    objects: usize,
+    structure: usize,
+    content: usize,
+    query: usize,
+    general: usize,
+    label: Option<String>,
+}
+
+impl LoadingTracker {
+    pub fn begin(&mut self, scope: LoadingScope, label: impl Into<String>) {
+        *self.counter_mut(scope) += 1;
+        self.label = Some(label.into());
+    }
+
+    pub fn end(&mut self, scope: LoadingScope) {
+        let c = self.counter_mut(scope);
+        *c = c.saturating_sub(1);
+        if !self.is_any() {
+            self.label = None;
+        }
+    }
+
+    fn counter_mut(&mut self, scope: LoadingScope) -> &mut usize {
+        match scope {
+            LoadingScope::Objects => &mut self.objects,
+            LoadingScope::Structure => &mut self.structure,
+            LoadingScope::Content => &mut self.content,
+            LoadingScope::Query => &mut self.query,
+            LoadingScope::General => &mut self.general,
+        }
+    }
+
+    pub fn objects(&self) -> bool {
+        self.objects > 0
+    }
+
+    pub fn structure(&self) -> bool {
+        self.structure > 0
+    }
+
+    pub fn content(&self) -> bool {
+        self.content > 0
+    }
+
+    pub fn query(&self) -> bool {
+        self.query > 0
+    }
+
+    pub fn is_any(&self) -> bool {
+        self.objects > 0
+            || self.structure > 0
+            || self.content > 0
+            || self.query > 0
+            || self.general > 0
+    }
+
+    pub fn active_label(&self) -> &str {
+        if let Some(lbl) = self.label.as_deref() {
+            return lbl;
+        }
+        if self.query() {
+            "Running query…"
+        } else if self.content() {
+            "Loading rows…"
+        } else if self.structure() {
+            "Loading structure…"
+        } else if self.objects() {
+            "Loading objects…"
+        } else {
+            "Loading…"
+        }
+    }
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Default)]
@@ -344,4 +430,46 @@ pub fn sorted_variables(map: HashMap<String, String>) -> Vec<(String, String)> {
     let mut v: Vec<(String, String)> = map.into_iter().collect();
     v.sort_by(|a, b| a.0.cmp(&b.0));
     v
+}
+
+#[cfg(test)]
+mod tests {
+    use super::{LoadingScope, LoadingTracker};
+
+    #[test]
+    fn loading_tracker_handles_overlapping_scopes() {
+        let mut tracker = LoadingTracker::default();
+        assert!(!tracker.is_any());
+
+        tracker.begin(LoadingScope::Structure, "Loading `users`…");
+        tracker.begin(LoadingScope::Content, "Loading `users`…");
+        assert!(tracker.structure());
+        assert!(tracker.content());
+        assert!(tracker.is_any());
+        assert_eq!(tracker.active_label(), "Loading `users`…");
+
+        tracker.end(LoadingScope::Structure);
+        assert!(!tracker.structure());
+        assert!(tracker.content());
+        assert!(tracker.is_any());
+
+        tracker.end(LoadingScope::Content);
+        assert!(!tracker.content());
+        assert!(!tracker.is_any());
+
+        // Extra end calls saturate cleanly at 0
+        tracker.end(LoadingScope::Content);
+        assert!(!tracker.is_any());
+    }
+
+    #[test]
+    fn loading_tracker_reference_counts_same_scope() {
+        let mut tracker = LoadingTracker::default();
+        tracker.begin(LoadingScope::Objects, "Req 1");
+        tracker.begin(LoadingScope::Objects, "Req 2");
+        tracker.end(LoadingScope::Objects);
+        assert!(tracker.objects());
+        tracker.end(LoadingScope::Objects);
+        assert!(!tracker.objects());
+    }
 }

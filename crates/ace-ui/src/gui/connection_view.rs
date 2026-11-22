@@ -1,5 +1,6 @@
 //! Sequel Ace Connection screen: hierarchical Favorites sidebar + minimalist Connection form.
 
+use crate::gui::loading::{loading_bar, loading_spinner};
 use crate::gui::root::AceApp;
 use crate::gui::runtime::demo_connection;
 use crate::gui::theme::{favorite_tint, Palette};
@@ -13,7 +14,7 @@ use gpui_kit::component::checkbox::Checkbox;
 use gpui_kit::component::input::Input;
 use gpui_kit::component::resizable::{h_resizable, resizable_panel};
 use gpui_kit::component::scroll::ScrollableElement as _;
-use gpui_kit::component::{h_flex, v_flex, Icon, Sizable as _};
+use gpui_kit::component::{h_flex, v_flex, Icon, Sizable as _, Size};
 use gpui_kit::prelude::FluentBuilder as _;
 use gpui_kit::*;
 
@@ -674,6 +675,8 @@ impl AceApp {
                             // Main Sequel Ace Connection Card
                             .child(
                                 v_flex()
+                                    .relative()
+                                    .overflow_hidden()
                                     .w_full()
                                     .rounded(px(10.))
                                     .bg(p.card_bg)
@@ -682,6 +685,16 @@ impl AceApp {
                                     .px(px(20.))
                                     .py(px(16.))
                                     .gap(px(8.))
+                                    .when(connecting || testing, |el| {
+                                        el.child(
+                                            div()
+                                                .absolute()
+                                                .top_0()
+                                                .left_0()
+                                                .right_0()
+                                                .child(loading_bar("conn-card-loading", p)),
+                                        )
+                                    })
                                     // Connection method segmented bar (hidden for SQLite)
                                     .when(engine != EngineKind::Sqlite, |el| {
                                         el.child(
@@ -1113,6 +1126,12 @@ impl AceApp {
                                                     .on_click(cx.listener(|this, _, window, cx| {
                                                         this.connect_active_tab(window, cx);
                                                     }))
+                                                    .when(connecting, |el| {
+                                                        el.child(loading_spinner(
+                                                            Size::XSmall,
+                                                            p.accent_fg,
+                                                        ))
+                                                    })
                                                     .child(if connecting {
                                                         "Connecting…"
                                                     } else {

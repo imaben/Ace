@@ -2,6 +2,7 @@
 //! all 6 Database Views (Structure, Content, Relations, Triggers, Table Info, Query),
 //! and the collapsible bottom SQL Query Console.
 
+use crate::gui::loading::{loading_inline, loading_pane, loading_pane_empty};
 use crate::gui::root::AceApp;
 use crate::gui::state::{QueryDrawerTab, WorkspaceSession};
 use crate::gui::theme::{favorite_tint, Palette};
@@ -349,6 +350,7 @@ impl AceApp {
                         Button::new("tb-refresh-dbs")
                             .ghost()
                             .xsmall()
+                            .loading(session.loading.objects())
                             .icon(Icon::new(Lucide::RefreshCw).size(px(12.)))
                             .tooltip("Refresh Databases & Tables")
                             .on_click(cx.listener(|this, _, window, cx| {
@@ -395,8 +397,10 @@ impl AceApp {
                     })),
             )
             .child(div().flex_1())
-            // Status summary
-            .child(
+            // Status summary / active loading pill
+            .child(if session.loading.is_any() {
+                loading_inline(session.loading.active_label().to_string(), p)
+            } else {
                 div()
                     .max_w(px(240.))
                     .overflow_hidden()
@@ -404,12 +408,9 @@ impl AceApp {
                     .whitespace_nowrap()
                     .text_size(px(11.))
                     .text_color(p.text_muted)
-                    .child(if session.busy {
-                        format!("{} • Loading…", session.status)
-                    } else {
-                        session.status.clone()
-                    }),
-            )
+                    .child(session.status.clone())
+                    .into_any_element()
+            })
             .child(div().w(px(1.)).h(px(20.)).bg(p.hairline))
             // Right utility icons (Console, Export, Import, Server Tools, Disconnect)
             .child(
@@ -649,21 +650,26 @@ impl AceApp {
                         ),
                 ),
             )
-            // Scrollable objects list
+            // Scrollable objects list (with scoped non-blocking loading indicator)
             .child(
-                div()
-                    .flex_1()
-                    .min_h_0()
-                    .w_full()
-                    .overflow_y_scrollbar()
-                    .child(
-                        v_flex()
-                            .w_full()
-                            .px(px(5.))
-                            .pb(px(10.))
-                            .gap(px(1.))
-                            .children(rows),
-                    ),
+                div().flex_1().min_h_0().w_full().child(loading_pane(
+                    "sidebar-objects-loading",
+                    session.loading.objects(),
+                    session.objects.is_empty(),
+                    "Loading tables…",
+                    p,
+                    div()
+                        .size_full()
+                        .overflow_y_scrollbar()
+                        .child(
+                            v_flex()
+                                .w_full()
+                                .px(px(5.))
+                                .pb(px(10.))
+                                .gap(px(1.))
+                                .children(rows),
+                        ),
+                )),
             )
             // Bottom action bar (+ Add Table, - Drop Table, Pin, Refresh, count)
             .child(
@@ -718,6 +724,7 @@ impl AceApp {
                         Button::new("tbl-refresh")
                             .ghost()
                             .xsmall()
+                            .loading(session.loading.objects())
                             .icon(Icon::new(Lucide::RefreshCw).size(px(12.)))
                             .tooltip("Refresh Tables")
                             .on_click(cx.listener(|this, _, window, cx| {
@@ -774,21 +781,24 @@ impl AceApp {
             .map(|m| m.indexes.len())
             .unwrap_or(0);
 
+        let struct_loading = session.loading.structure();
+
         let columns_pane = v_flex()
             .size_full()
             .bg(p.window_bg)
             .child(section_header("Columns", Some(format!("{col_count}")), p))
             .child(
-                div()
-                    .flex_1()
-                    .min_h_0()
-                    .w_full()
-                    .child(
-                        DataTable::new(&session.structure_table)
-                            .stripe(true)
-                            .bordered(false)
-                            .small(),
-                    ),
+                div().flex_1().min_h_0().w_full().child(loading_pane(
+                    "structure-cols-loading",
+                    struct_loading,
+                    col_count == 0,
+                    "Loading structure…",
+                    p,
+                    DataTable::new(&session.structure_table)
+                        .stripe(true)
+                        .bordered(false)
+                        .small(),
+                )),
             )
             .child(
                 h_flex()
@@ -835,6 +845,7 @@ impl AceApp {
                         Button::new("str-refresh")
                             .ghost()
                             .xsmall()
+                            .loading(struct_loading)
                             .icon(Icon::new(Lucide::RefreshCw).size(px(12.)))
                             .tooltip("Reload Table Structure")
                             .on_click(cx.listener(|this, _, window, cx| {
@@ -848,16 +859,17 @@ impl AceApp {
             .bg(p.window_bg)
             .child(section_header("Indexes", Some(format!("{idx_count}")), p))
             .child(
-                div()
-                    .flex_1()
-                    .min_h_0()
-                    .w_full()
-                    .child(
-                        DataTable::new(&session.index_table)
-                            .stripe(true)
-                            .bordered(false)
-                            .small(),
-                    ),
+                div().flex_1().min_h_0().w_full().child(loading_pane(
+                    "structure-idx-loading",
+                    struct_loading,
+                    idx_count == 0,
+                    "Loading indexes…",
+                    p,
+                    DataTable::new(&session.index_table)
+                        .stripe(true)
+                        .bordered(false)
+                        .small(),
+                )),
             )
             .child(
                 h_flex()
@@ -925,6 +937,7 @@ impl AceApp {
         let has_prev = offset > 0;
         let has_next = offset + loaded < total;
         let has_filter = session.where_clause.is_some();
+        let content_loading = session.loading.content();
 
         let selected_cell_label = session.selected_cell.and_then(|(r, c)| {
             let col_name = session.content_columns.get(c)?;
@@ -976,6 +989,7 @@ impl AceApp {
                         Button::new("cnt-filter-apply")
                             .primary()
                             .xsmall()
+                            .loading(content_loading)
                             .label("Filter")
                             .on_click(cx.listener(|this, _, window, cx| {
                                 this.apply_content_filter(window, cx);
@@ -994,18 +1008,19 @@ impl AceApp {
                         )
                     }),
             )
-            // Main Virtualized DataTable
+            // Main Virtualized DataTable (scoped non-blocking loading indicator)
             .child(
-                div()
-                    .flex_1()
-                    .min_h_0()
-                    .w_full()
-                    .child(
-                        DataTable::new(&session.content_table)
-                            .stripe(true)
-                            .bordered(false)
-                            .small(),
-                    ),
+                div().flex_1().min_h_0().w_full().child(loading_pane(
+                    "content-rows-loading",
+                    content_loading,
+                    loaded == 0,
+                    "Loading rows…",
+                    p,
+                    DataTable::new(&session.content_table)
+                        .stripe(true)
+                        .bordered(false)
+                        .small(),
+                )),
             )
             // Inline Cell Inspector / Editor bar (appears when a cell is selected — full width!)
             .when_some(selected_cell_label, |el, label| {
@@ -1132,6 +1147,7 @@ impl AceApp {
                         Button::new("cnt-refresh")
                             .ghost()
                             .xsmall()
+                            .loading(content_loading)
                             .icon(Icon::new(Lucide::RefreshCw).size(px(12.)))
                             .tooltip("Reload Content")
                             .on_click(cx.listener(move |this, _, window, cx| {
@@ -1156,7 +1172,7 @@ impl AceApp {
                         Button::new("cnt-prev")
                             .ghost()
                             .xsmall()
-                            .disabled(!has_prev)
+                            .disabled(!has_prev || content_loading)
                             .icon(Icon::new(Lucide::ChevronLeft).size(px(13.)))
                             .on_click(cx.listener(move |this, _, window, cx| {
                                 this.load_content_page(offset.saturating_sub(page), window, cx);
@@ -1177,7 +1193,7 @@ impl AceApp {
                         Button::new("cnt-next")
                             .ghost()
                             .xsmall()
-                            .disabled(!has_next)
+                            .disabled(!has_next || content_loading)
                             .icon(Icon::new(Lucide::ChevronRight).size(px(13.)))
                             .on_click(cx.listener(move |this, _, window, cx| {
                                 this.load_content_page(offset + page, window, cx);
@@ -1203,18 +1219,24 @@ impl AceApp {
             .as_ref()
             .map(|m| m.foreign_keys.len())
             .unwrap_or(0);
+        let struct_loading = session.loading.structure();
 
         v_flex()
             .size_full()
             .bg(p.window_bg)
             .child(section_header("Foreign Key Relations", Some(format!("{count}")), p))
             .child(
-                div().flex_1().min_h_0().w_full().child(
+                div().flex_1().min_h_0().w_full().child(loading_pane(
+                    "relations-loading",
+                    struct_loading,
+                    count == 0,
+                    "Loading relations…",
+                    p,
                     DataTable::new(&session.relation_table)
                         .stripe(true)
                         .bordered(false)
                         .small(),
-                ),
+                )),
             )
             .child(
                 h_flex()
@@ -1251,6 +1273,7 @@ impl AceApp {
                         Button::new("rel-refresh")
                             .ghost()
                             .xsmall()
+                            .loading(struct_loading)
                             .icon(Icon::new(Lucide::RefreshCw).size(px(12.)))
                             .on_click(cx.listener(|this, _, window, cx| {
                                 this.reload_selected_table(window, cx);
@@ -1276,6 +1299,7 @@ impl AceApp {
             .and_then(|i| session.triggers.get(i))
             .map(|t| t.statement.clone())
             .unwrap_or_else(|| "Select a trigger above to view its full definition.".into());
+        let struct_loading = session.loading.structure();
 
         let top = v_flex()
             .size_full()
@@ -1286,12 +1310,17 @@ impl AceApp {
                 p,
             ))
             .child(
-                div().flex_1().min_h_0().w_full().child(
+                div().flex_1().min_h_0().w_full().child(loading_pane(
+                    "triggers-loading",
+                    struct_loading,
+                    session.triggers.is_empty(),
+                    "Loading triggers…",
+                    p,
                     DataTable::new(&session.trigger_table)
                         .stripe(true)
                         .bordered(false)
                         .small(),
-                ),
+                )),
             )
             .child(
                 h_flex()
@@ -1328,6 +1357,7 @@ impl AceApp {
                         Button::new("trg-refresh")
                             .ghost()
                             .xsmall()
+                            .loading(struct_loading)
                             .icon(Icon::new(Lucide::RefreshCw).size(px(12.)))
                             .on_click(cx.listener(|this, _, window, cx| {
                                 this.reload_selected_table(window, cx);
@@ -1378,7 +1408,11 @@ impl AceApp {
         p: Palette,
         cx: &mut Context<Self>,
     ) -> AnyElement {
+        let struct_loading = session.loading.structure();
         let Some(meta) = &session.table_meta else {
+            if session.selected_table.is_some() && struct_loading {
+                return loading_pane_empty("table-info-loading", "Loading table info…", p);
+            }
             return empty_view("Select a table from the sidebar to view table info", p);
         };
         let is_sqlite = session.info.engine == ace_core::EngineKind::Sqlite;
@@ -1392,7 +1426,7 @@ impl AceApp {
             .map(|n| n.to_string())
             .unwrap_or_else(|| "—".into());
 
-        div()
+        let content = div()
             .size_full()
             .bg(p.window_bg)
             .overflow_y_scrollbar()
@@ -1597,8 +1631,16 @@ impl AceApp {
                                     ),
                             ),
                     ),
-            )
-            .into_any_element()
+            );
+
+        loading_pane(
+            "table-info-refresh",
+            struct_loading,
+            false,
+            "Refreshing table info…",
+            p,
+            content,
+        )
     }
 
     // ─── View 6: Custom Query ───────────────────────────────────────────────
@@ -1615,6 +1657,7 @@ impl AceApp {
         let active_res = session.active_result_idx;
         let query_error = session.query_error.clone();
         let query_msg = session.query_message.clone();
+        let query_loading = session.loading.query();
 
         let editor_pane = v_flex()
             .size_full()
@@ -1634,6 +1677,7 @@ impl AceApp {
                         Button::new("qry-run-sel")
                             .primary()
                             .xsmall()
+                            .loading(query_loading)
                             .icon(Icon::new(Lucide::Play).size(px(11.)))
                             .label("Run Current")
                             .tooltip("Run selected SQL or statement at cursor (Cmd+R / Cmd+Enter)")
@@ -1645,6 +1689,7 @@ impl AceApp {
                         Button::new("qry-run-all")
                             .outline()
                             .xsmall()
+                            .disabled(query_loading)
                             .icon(Icon::new(Lucide::CirclePlay).size(px(12.)))
                             .label("Run All")
                             .tooltip("Run all queries in editor (Cmd+Shift+R)")
@@ -1694,7 +1739,9 @@ impl AceApp {
                             })),
                     )
                     .child(div().flex_1())
-                    .child(
+                    .child(if query_loading {
+                        loading_inline("Running query…", p)
+                    } else {
                         div()
                             .text_size(px(11.))
                             .text_color(if query_error.is_some() {
@@ -1702,8 +1749,9 @@ impl AceApp {
                             } else {
                                 p.text_muted
                             })
-                            .child(query_msg),
-                    )
+                            .child(query_msg)
+                            .into_any_element()
+                    })
                     .child(
                         Button::new("qry-drawer-toggle")
                             .ghost()
@@ -1799,17 +1847,18 @@ impl AceApp {
                     )
                     .into_any_element()
             } else {
-                div()
-                    .flex_1()
-                    .min_h_0()
-                    .w_full()
-                    .child(
-                        DataTable::new(&session.query_result_table)
-                            .stripe(true)
-                            .bordered(false)
-                            .small(),
-                    )
-                    .into_any_element()
+                div().flex_1().min_h_0().w_full().child(loading_pane(
+                    "query-result-loading",
+                    query_loading,
+                    result_count == 0,
+                    "Running query…",
+                    p,
+                    DataTable::new(&session.query_result_table)
+                        .stripe(true)
+                        .bordered(false)
+                        .small(),
+                ))
+                .into_any_element()
             });
 
         let main_query_split = v_resizable("query-editor-split")

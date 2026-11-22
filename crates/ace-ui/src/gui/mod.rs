@@ -4,6 +4,7 @@ pub mod console;
 pub mod connection_view;
 pub mod data_grid;
 pub mod design;
+pub mod loading;
 pub mod modals;
 pub mod root;
 pub mod runtime;
